@@ -10,7 +10,7 @@ Example:
 */
 
 var runningSum = function(nums) {
-    //init array with first number of input array included
+    //init empty array with first number of input array
     let sum = [nums[0]]
 
     //iterate over given array
