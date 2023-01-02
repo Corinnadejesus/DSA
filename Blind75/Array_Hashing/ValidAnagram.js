@@ -10,6 +10,8 @@
 // Input: s = "rat", t = "car"
 // Output: false
 
+//Time and Space Complexity: O(n)
+
 var isAnagram = function(s, t) {
     //check the case if the length is not equal
     if(s.length !== t.length) return false

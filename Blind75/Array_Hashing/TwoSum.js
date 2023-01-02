@@ -11,7 +11,9 @@
 // Input: nums = [3,2,4], target = 6
 // Output: [1,2]
 
+
 //Hashmap
+//Time and Space Complexity: O(n)
 var twoSum = function (nums, target) {
   //init map
   const hashMap = {};
@@ -34,6 +36,7 @@ var twoSum = function (nums, target) {
 //////////////////******************* ALTERNATE ********************///////////////////////
 
 //Brute Force
+// Time O(N^2) | Space O(1)
 var twoSum = function (nums, target) {
   //iterate over the array of nums
   for (let i = 0; i < nums.length; i++) {

@@ -17,6 +17,9 @@
 // Explanation: s is an empty string "" after removing non-alphanumeric characters.
 // Since an empty string reads the same forward and backward, it is a palindrome.
 
+
+// Time O(N) | Space O(1)
+
 var isPalindrome = function(s) {
     // lower case the string, remove all non-alphanumeric chars
     // *** create regex to replace special chars with "" ***

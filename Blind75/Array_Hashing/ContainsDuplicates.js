@@ -11,6 +11,8 @@ function containsDuplicates(arrNums) {
   return false;
 }
 
+//Time and Space Complexity: O(n)
+
 //////////////////******************* ALTERNATE ********************///////////////////////
 
 // var ContainsDuplicate = function(nums) {
