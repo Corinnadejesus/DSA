@@ -24,35 +24,57 @@ Explanation: The only possible triplet sums up to 0.
 Time: O(n^2) | Space: O(n)
 */
 
-//Two Sum with Added Steps
+//Approach: Two Sum with Added Steps
+// nums[i] + nums[j] + nums[k] == 0 => GOAL
+// nums[j] + nums[k] = 0 - nums[i] => TARGET VALUE
 
-function threeSum(nums) {
+var threeSum = function (nums) {
+  //sort the array
+  nums.sort((a, b) => a - b);
 
-    //edge case: when array has less than 3 values break
+  //init array to hold triplets
+  const holdTrips = [];
 
-    //init holdTrips array to push triplet sets
+  //loop over array
+  for (let i = 0; i < nums.length; i++) {
+    //check if there are duplicates continue
+    if (i > 0 && nums[i] === nums[i - 1]) continue;
 
-    //sort the nums array
+    //**** Two Pointer Solution Starts Here ****
+    let target = 0 - nums[i];
+    let left = i + 1;
+    let right = nums.length - 1;
 
-    //iterate over nums array (micro-optimization: iterate skipping 2 last numbers) and implement two pointers method
+    //while left is less than right
+    while (left < right) {
+      const sum = nums[left] + nums[right];
+      //if sum is greater than target move right side (backward) towards the center
+      if (sum > target) {
+        right--;
+        //if sum is less than target move left side (forward) towards the center
+      } else if (sum < target) {
+        left++;
+      } else {
+        //otherwise
+        //push (array) of the triplets into holdTrips
+        holdTrips.push([nums[i], nums[left], nums[right]]);
 
-        //check for duplicates
-            //if i is equal to the number previously, skip that number and move to the next one (continue)
+        //check for duplicates within the array on both left and right sides
+        //while the LEFT current value is equal to previous value => increment left to skip duplicate
+        while (nums[left] === nums[left + 1]) {
+          left++;
+        }
 
-        //init sum value of left and right
+        //while the RIGHT current value is equal to previous value => decrement right to skip duplicate
+        while (nums[right] === nums[right - 1]) {
+          right--;
+        }
 
-        //init left and right sides
-
-        //while left is less than right
-            //if the sum is equal to 0
-                //PUSH triplets into holdTrips array
-                //Increment left to next number
-                //Decrement right to get to next number
-
-            //if the sum, left, and right is less than 0
-                //increment the left side to check next value
-
-            //if the sum, left, and right is greater than 0
-                //decrement the right side
-
-}
+        //increment left and right again to continue to look for triplets
+        left++;
+        right--;
+      }
+    }
+  }
+  return holdTrips;
+};
