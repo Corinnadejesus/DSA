@@ -27,11 +27,11 @@ var isAnagram = function(s, t) {
 
     //iterate over t length
     for(let j of t) {
-        //check if element of t has not been seen in hashmap
+        //if element of t does not exist OR has not been seen in hashmap
         if(!hashMap[j] || hashMap[j] === 0) {
             return false
         } else {
-            //if it has been seen decrease the value from the hashmap and check the next letter
+            //otherwise it has been seen, decrease the value from the hashmap and check the next letter
             hashMap[j]--
         }
     }
