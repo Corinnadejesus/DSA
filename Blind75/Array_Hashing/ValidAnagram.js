@@ -38,3 +38,25 @@ var isAnagram = function(s, t) {
     return true
 
 };
+
+
+//Anne Solution
+// var isAnagram = function(s, t) {
+//     if (s.length !== t.length) return false;
+
+//     let hashMap = {};
+
+//     for (let char of s) {
+//         if (!hashMap[char]) {
+//             hashMap[char] = 0;
+//         }
+//         hashMap[char]++;
+//     }
+
+//     for (let char of t) {
+//         hashMap[char]--;
+//         if (hashMap[char] === 0) delete hashMap[char]
+//     }
+
+//     return !Object.keys(hashMap).length;
+// };
