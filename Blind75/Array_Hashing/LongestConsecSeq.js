@@ -28,7 +28,7 @@ function longestConsecSequence(nums) {
       let currNum = num;
       let currStreak = 1;
 
-      //if num one greater is in set see how many times it occurs
+      //if num one greater than current num is in set see how many times it occurs
       while (set.has(currNum + 1)) {
         //increment count of the streak, and count of the num until no more left
         currNum++;
