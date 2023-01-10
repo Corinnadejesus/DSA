@@ -21,7 +21,7 @@ Explanation: There is no such common subsequence, so the result is 0.
 */
 
 // DYNAMIC PROGRAMMING PROBLEM (SOLVE WITH A TABLE)
-// T: | S:
+// T: O(n^2) | S: O(n)
 function longestCommonSeq(text1, text2) {
   //create table X: text1, Y: text2
   const table = Array.from({ length: text1.length + 1 }, () =>
@@ -52,7 +52,7 @@ function longestCommonSeq(text1, text2) {
 }
 
 ////////******OPTIMIZED SOLUTION*******//////////
-//QUESTION: HOW IS THIS OPTIMIZED WHEN USING 3 LOOPS??
+//QUESTION: HOW IS THIS OPTIMIZED WHEN ITS USING 3 LOOPS??
 
 function longestCommonSubsequence(text1, text2) {
   const shorter = text1.length >= text2.length ? text2 : text1;
