@@ -44,26 +44,3 @@ function buySellStock(prices) {
   }
   return maxProfit;
 }
-
-//Further Explanation
-//BUY LOW, SELL HIGH
-  //set left and right pointers to start at first and second indexes
-  //left (buy)
-  //right (selling)
-  //maxProfit (0 by default)
-
-  //while our right has not passed the end of prices
-  //is transaction profitable?
-  //check if left buying price is less than the right selling price
-  //calculate the profit we made (right - left)
-  //update max profit
-
-  //else
-  //update left and right pointers
-  //otherwise left buying is greater than right selling
-  //set left buying pointer as the right selling pointer because it is lower in value
-  //increment right selling pointer
-
-  //at every iteration check if the left pointer is less than the right pointer then we made a profit
-  //increment the right pointer to check for next value
-  //only increment left pointer if we made a profit
