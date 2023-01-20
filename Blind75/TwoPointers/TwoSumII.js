@@ -22,7 +22,7 @@ Space: O(1)
 */
 
 
-var twoSum = function(numbers, target) {
+var twoSumII = function(numbers, target) {
     //Approach: Two Pointers
 
     //init left and right side
