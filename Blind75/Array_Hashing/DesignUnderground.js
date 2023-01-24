@@ -43,7 +43,7 @@ class UndergroundSystem {
 
         //if the map contains a route between stations
         if(this.durationMap.has(stationRoute)) {
-            //add the time to the map
+            //get the route as a key and push the time as a value
             this.durationMap.get(stationRoute).push(duration);
         } else {
             //otherwise set the calculated time of the route
