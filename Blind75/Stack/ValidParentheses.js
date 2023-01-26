@@ -35,7 +35,7 @@ var isValid = function(s) {
         if(hashMap[ele]) {
             //push it into the stack
             stack.push(hashMap[ele])
-        //if  element is opening bracket and last item in stack is equal to the element
+        //if element is opening bracket and last item in stack is equal to the element
         } else if (stack[stack.length - 1] === ele) {
             //pop it out of the stack
             stack.pop()

@@ -17,7 +17,7 @@ var numIslands = function (grid) {
   let islandCounter = 0;
 
   function dfs(grid, i, j) {
-    //Checking if the element of (i or j) is either ABOVE or BELOW the bounds of the grid OR if the element we are on is a 0, we want 1s
+    //if the element (i or j) is ABOVE (OR) BELOW the bounds of the grid O(R) if the element we are on is a 0, we want 1s
     if (
       i < 0 ||
       i >= grid.length ||
@@ -28,7 +28,7 @@ var numIslands = function (grid) {
       return;
     }
 
-    //change the element we are on to a 0
+    //change the element we are on to a 0 (Why are we doing this again?)
     grid[i][j] = "0";
 
     //checking if any of the elements surrounding siblings are a 1

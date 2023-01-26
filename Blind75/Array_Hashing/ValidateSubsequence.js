@@ -1,7 +1,7 @@
-//Given a non-empty array of integers, write function that returns true if the second array is subsequence of the first array
-
-//Example
 /*
+Given a non-empty array of integers, write function that returns true if the second array is subsequence of the first array
+
+Example
 Array: [5, 3, 4 , 2, -6]
 Sequence: [4, 9, 7, 2, 3]
 
