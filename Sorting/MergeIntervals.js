@@ -10,13 +10,13 @@ Time: O(n) | Space: O(1)
 */
 
 var merge = function (intervals) {
-  // sort the input array by 0th index to make checking pair easier
+  //sort the input array by 0th index to make checking pair easier
   intervals.sort((a, b) => a[0] - b[0]);
 
-  // set results array, add first interval to it
+  //set results array, add first interval to it
   const results = [intervals[0]];
 
-  // loop over intervals
+  //loop over intervals
   for (const interval of intervals) {
     //set end1 as the last element in the results array at index 1
     let end1 = results[results.length - 1][1];

@@ -23,37 +23,72 @@ undergroundSystem.getAverageTime("Leyton", "Waterloo");    // return 11.00000
 undergroundSystem.checkOut(10, "Waterloo", 38);  // Customer 10 "Leyton" -> "Waterloo" in 38-24 = 14
 undergroundSystem.getAverageTime("Leyton", "Waterloo");    // return 12.00000. Three trips "Leyton" -> "Waterloo", (10 + 12 + 14) / 3 = 12
 */
+var UndergroundSystem = function() {
+    this.checkInData = {};
+    this.travelData = {};
+};
 
-class UndergroundSystem {
-    constructor() {
-        this.idMap = new Map();
-        this.durationMap = new Map();
-    }
+/**
+ * @param {number} id
+ * @param {string} stationName
+ * @param {number} t
+ * @return {void}
+ */
+UndergroundSystem.prototype.checkIn = function(id, stationName, t) {
+    this.checkInData[id] = {stationName, t};
+};
 
-    checkIn(id, stationName, t) {
-        this.idMap.set(id, {stationName, checkInTime: t});
-    }
+/**
+ * @param {number} id
+ * @param {string} stationName
+ * @param {number} t
+ * @return {void}
+ */
 
-    checkOut(id, stationName, t) {
-        const startStation = this.idMap.get(id);
-        const stationRoute = `${startStation.stationName}, ${stationName}`;
+ /*
+Approach
+checkIn(35, 'Leyton', 8) // null
+checkOut(35, 'Paradise', 14) // null
+getAvg('Leyton','Paradise') // 6
+checkIn(34, 'Leyton', 27)
+checkOut(34, 'Paradise', 35)
+getAvg('Leyton','Paradise') // 7
 
-        //difference between the check out and check in time
-        const duration = t - startStation.checkInTime;
-
-        //if the map contains a route between stations
-        if(this.durationMap.has(stationRoute)) {
-            //get the route as a key and push the time as a value
-            this.durationMap.get(stationRoute).push(duration);
-        } else {
-            //otherwise set the calculated time of the route
-            this.durationMap.set(stationRoute,[duration]);
-        }
-    }
-
-    getAverageTime(startStation, endStation) {
-        const durationList = this.durationMap.get(`${startStation}, ${endStation}`);
-
-        return durationList.reduce((a, b) => a + b) / durationList.length;
-    }
+checkInData = {
+    '35': {'stationName': "Leyton", 't': 8}
+    '34': {'stationName': "Leyton", 't': 27}
 }
+
+travelData = {
+    'Leyton': { 'Paradise': {'journeys': 2, 'totalTime': 14}}
+}
+ */
+UndergroundSystem.prototype.checkOut = function(id, endStation, endTime) {
+    let startStation = this.checkInData[id].stationName;
+
+    //if travel data has no start station at all, set it in the object
+    if (!this.travelData[startStation]) this.travelData[startStation] = {};
+
+    //if travel data has a start station key with no end station key as its nested object
+    if (!this.travelData[startStation][endStation]) {
+        //then populate the values of the end station
+        this.travelData[startStation][endStation] = { journeys: 0, totalTime: 0};
+    }
+
+    let startTime = this.checkInData[id].t;
+    //taking the difference in check in and check out times and adding it to total time
+    this.travelData[startStation][endStation].totalTime += endTime - startTime;
+    //adding to the total trips taken
+    this.travelData[startStation][endStation].journeys++;
+};
+
+/**
+ * @param {string} startStation
+ * @param {string} endStation
+ * @return {number}
+ */
+UndergroundSystem.prototype.getAverageTime = function(startStation, endStation) {
+    let numOfJourneys = this.travelData[startStation][endStation].journeys;
+    let totalTime = this.travelData[startStation][endStation].totalTime;
+    return totalTime / numOfJourneys;
+};
