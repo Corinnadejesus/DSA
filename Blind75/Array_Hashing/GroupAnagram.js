@@ -10,27 +10,34 @@ Output: [["bat"],["nat","tan"],["ate","eat","tea"]]
 Example 2:
 Input: strs = [""]
 Output: [[""]]
+
+Time: O(n) | Space: O(n)
 */
 
-function groupAnagram(strs) {
-     //init map
-     let hashMap = {}
+var groupAnagrams = function (strs) {
+  //init map
+  let hashMap = {};
 
-     //create a sorted array from the strs input
-     let sortedStrs = strs.map((word) => word.split('').sort().join(''))
+  //create a sorted array from the strs input
+  let sorted = strs.map((word) => word.split("").sort().join(""));
 
-     for(let i = 0; i < strs.length; i++) {
-         //if the letters of strs ele does not match the key of the map of sorted Strs
-         if(!hashMap[sortedStrs[i]]) {
-             //then the letters of the keys in the map AND str elements do not match
-             //set strs ele as the value of map as an array
-             hashMap[sortedStrs[i]] = [strs[i]]
+  for (let i = 0; i < strs.length; i++) {
+    // strs[i] = eat, tea, tan, ate, nat, bat
+    // sorted[i] = aet, aet, ant, aet, ant, abt
 
-         } else {
-             //otherwise the letters of the map keys AND str elements match and should be pushed into array of values
-             hashMap[sortedStrs[i]].push(strs[i])
-         }
-     }
+    //if map doesn't contain sorted strings
+    if (!hashMap[sorted[i]]) {
+      //set sorted strings as keys and set the strings that are the same letters as an array of values
+      hashMap[sorted[i]] = [strs[i]];
 
-     return Object.values(hashMap)
-}
+      //Output => { aet: [ 'eat', 'tea', 'ate' ], ant: [ 'tan', 'nat' ], abt: [ 'bat' ] }
+    } else {
+      //otherwise push the sorted strings into the key
+      hashMap[sorted[i]].push(strs[i]);
+
+      //Output => { aet: [ 'eat', 'tea', 'ate' ], ant: [ 'tan', 'nat' ] }
+    }
+  }
+
+  return Object.values(hashMap);
+};

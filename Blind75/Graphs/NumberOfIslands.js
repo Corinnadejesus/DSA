@@ -28,7 +28,7 @@ var numIslands = function (grid) {
       return;
     }
 
-    //change the element we are on to a 0 (Why are we doing this again?)
+    //change the element we are on from a 1 to a 0
     grid[i][j] = "0";
 
     //checking if any of the elements surrounding siblings are a 1
