@@ -20,6 +20,9 @@ var search = function (nums, target) {
     ONLY ONE SIDE WILL BE SORTED
     [4,5,6,7,0,1,2] Target = 0
      L     M     R
+
+    [4,5,6,7,0,1,2] target = 0
+         R M L
     */
   let left = 0;
   let right = nums.length - 1;
