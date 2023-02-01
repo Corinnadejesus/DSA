@@ -28,7 +28,7 @@ function binarySearch(nums, target) {
 
   while (start <= end) {
     // Finding the mid using integer division
-    let mid = start + Math.floor((end - start) / 2);
+    let mid = start + Math.floor(start + (end - start) / 2);
 
     // Target value is present at the middle of the array
     if (nums[mid] == target) return mid;
