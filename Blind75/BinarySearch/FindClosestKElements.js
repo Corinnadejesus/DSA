@@ -11,6 +11,8 @@ Example 2:
 Input: arr = [1,2,3,4,5], k = 4, x = -1
 Output: [1,2,3,4]
 
+SOLUTION VIDEO: YOUTUBE NEETCODE EXAMPLE STARTS AT 12:38
+
 Time: O(log n + k)
     - Binary Search O(log n) needed to find starting point in window.
     - Window size growth is dependent on O(k).
@@ -19,8 +21,8 @@ Space: O(1)
 
 //Binary Search Helper Function
 function binarySearch(nums, target) {
-  let start = 0,
-    end = nums.length - 1;
+  let start = 0
+  let end = nums.length - 1;
 
   if (start > end) return -1;
 
@@ -38,18 +40,25 @@ function binarySearch(nums, target) {
   return start;
 }
 
+/*
+    [1,2,3,4,5], k = 4, x = 3
+     L R
+
+WINDOW: 2
+*/
 function findClosestElements(nums, k, num) {
   // If array length is same as k return the original array
   if (nums.length == k) return nums;
 
   //We use binary search to locate either num in the array or the number nearest to it
+  //Why do we minus 1?
   let left = binarySearch(nums, num) - 1;
   let right = left + 1;
   let window = right - left - 1;
 
-  // While the sliding window's size is less than k
+  // While the sliding window size is less than k, check which number is closer to x
   while (window < k) {
-    // check for out of bounds
+    // check if out of bounds
     if (left == -1) {
       right++;
       continue;
@@ -59,10 +68,9 @@ function findClosestElements(nums, k, num) {
       right == nums.length ||
       Math.abs(nums[left] - num) <= Math.abs(nums[right] - num)
     )
-      // then move the sliding window to the left side
+      // then move the sliding window to the left edge to include element in our output
       left--;
     else {
-      // move the sliding window to the right side
       right++;
     }
   }

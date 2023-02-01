@@ -12,7 +12,7 @@ Example 2:
 Input: nums = [4,5,6,7,0,1,2], target = 3
 Output: -1
 
-Time: O(log n) | Space: O(n)
+Time: O(log n) | Space: O(1)
 */
 
 var search = function (nums, target) {
@@ -34,7 +34,7 @@ var search = function (nums, target) {
     if (nums[mid] === target) return mid;
 
     if (nums[left] <= nums[mid]) {
-      // Then we know left is sorted side, now check if target is in that range
+      // Then we know left is sorted side, now check if target is in that range of our sorted side
       if (nums[left] <= target && target < nums[mid]) {
         //then we move the right backwards towards the target
         right = mid - 1;

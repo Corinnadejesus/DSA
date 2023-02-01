@@ -28,7 +28,7 @@ function lengthOfLongestSubstring(s) {
     for (let end = 0; end < s.length; end++) {
         //while the set contains repeat chars
         while (set.has(s[end])) {
-            //delete the repeating chars from the beginning*
+            //delete the repeating chars from the beginning
             set.delete(s[begin])
             //update the beginning by starting at the value after the repeating char
             begin = begin + 1
