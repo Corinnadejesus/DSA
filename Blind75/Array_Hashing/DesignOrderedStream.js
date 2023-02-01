@@ -30,20 +30,23 @@ os.insert(4, "ddddd"); // Inserts (4, "ddddd"), returns ["ddddd", "eeeee"].
 
 //Time: O(n) | Space: O(n)
 var OrderedStream = function (n) {
-  this.list = [];
+  this.stream = new Array(n);
   this.pointer = 0;
 };
+/*
+                p
+    stream = ['aaa','bbb','ccc',0,0]
+    chunk = [bbb,ccc ]
 
+    insert(3, ccc) => []
+    insert(1, aaa) => [aaa]
+    insert(2, bbb) => [bbb,ccc]
+ */
 OrderedStream.prototype.insert = function (idKey, value) {
-  let chunk = [];
-
-  // (- 1) because array's are zero-indexed and example starts from 1
-  this.list[idKey - 1] = value;
-
-  //as long as the list has a value associated with the pointer
-  while (this.list[this.pointer]) {
-    //we push the current value into the chunk and continue on to the next value
-    chunk.push(this.list[this.pointer]);
+  const chunk = [];
+  this.stream[idKey - 1] = value;
+  while (this.stream[this.pointer]) {
+    chunk.push(this.stream[this.pointer]);
     this.pointer++;
   }
   return chunk;
