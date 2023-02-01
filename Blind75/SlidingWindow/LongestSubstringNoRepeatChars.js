@@ -37,7 +37,8 @@ function lengthOfLongestSubstring(s) {
         //otherwise add the letters that are not repeating
         set.add(s[end])
 
-        //get the max the same way
+        //One-off error:
+        //the difference in (end, begin) gets one Index, add one to get the next non-repeat char.
          max = Math.max(max, end - begin + 1)
     }
 
