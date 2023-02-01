@@ -21,7 +21,7 @@ Space: O(1)
 
 //Binary Search Helper Function
 function binarySearch(nums, target) {
-  let start = 0
+  let start = 0;
   let end = nums.length - 1;
 
   if (start > end) return -1;
@@ -41,23 +41,39 @@ function binarySearch(nums, target) {
 }
 
 /*
-    [1,2,3,4,5], k = 4, x = 3
-     L R
+ WALK-THROUGH
+ Right Pointer is at the number after left
+    [1,2,3,4,5,6], k = 4, num = 3
+       L R
 
-WINDOW: 2
+3 is closer to num than 2 so move Right pointer
+    [1,2,3,4,5,6], k = 4, num = 3
+       L N R
+
+ What is the smallest closest value to num? (2) so move Left pointer
+    [1,2,3,4,5,6], k = 4, num = 3
+     L     R
+
+4 is closer to num than 1, so move Right pointer
+    [1,2,3,4,5,6], k = 4, num = 3
+     L       R
+
+5 is closer to num than 1 so move Right pointer
+    [1,2,3,4,5,6], k = 4, num = 3
+     L         R
+NOW, we have the 4 closest numbers to num, we are done.
 */
+
 function findClosestElements(nums, k, num) {
   // If array length is same as k return the original array
   if (nums.length == k) return nums;
 
-  //We use binary search to locate either num in the array or the number nearest to it
-  //Why do we minus 1?
-  let left = binarySearch(nums, num) - 1;
-  let right = left + 1;
-  let window = right - left - 1;
+  //We use binary search to locate the elements closest to the given num
+  let left = binarySearch(nums, num) - 1,
+    right = left + 1;
 
   // While the sliding window size is less than k, check which number is closer to x
-  while (window < k) {
+  while (right - left - 1 < k) {
     // check if out of bounds
     if (left == -1) {
       right++;
