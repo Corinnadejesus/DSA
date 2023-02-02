@@ -1,0 +1,44 @@
+
+
+var mergeTwoLists = function(list1, list2) {
+    //Time: O(n + m) where list1 (n) and list2 (m)
+    //Space: O(1) because of simple pointers shift, not creating anything that will scale as input gets larger
+
+    let dummy = new ListNode(-Infinity)
+    //we want a reference to dummy in prev because it is going to be returned at the end
+    let prev = dummy
+    while(list1 && list2) {
+        //checking for smallest values to start the merge
+        if(list1.val <= list2.val) {
+            prev.next = list1 //set to second value of list1
+            prev = list1 //set to first value of list1
+            list1 = list1.next //increments past the first value to get the next value
+        } else {
+            prev.next = list2
+            prev = list2
+            list2 = list2.next
+        }
+    }
+    //in the case of difference lengths of list1 or list2
+    if(list1 === null) prev.next = list2
+    if(list2 === null) prev.next = list1
+
+    return dummy.next
+};
+
+//******************* ALTERNATE (RECURSION) *************************//
+
+var mergeTwoLists = function(list1, list2) {
+    //Time: O(n + m)
+    //Space: O(n + m)
+    if(!list1) return list2;
+    if(!list2) return list1;
+    if(list1.val <= list2.val){
+        list1.next = mergeTwoLists(list1.next, list2)
+        return list1;
+    }
+    list2.next = mergeTwoLists(list1, list2.next)
+    return list2;
+
+
+};

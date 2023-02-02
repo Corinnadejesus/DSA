@@ -11,7 +11,7 @@ Output: true
 Input: matrix = [[1,3,5,7],[10,11,16,20],[23,30,34,60]], target = 13
 Output: false
 
-Time: O(log n) | Space: O(1)
+Time: O(log n * m) | Space: O(1)
 */
 
 var searchMatrix = function(matrix, target) {
@@ -21,8 +21,8 @@ var searchMatrix = function(matrix, target) {
     let right = rows * cols - 1 //matrix is 0-indexed
     while(left <= right) {
         let mid = Math.floor(left + (right - left))
-        //                       ROW INDEX           COL INDEX
         //pivot splits the array in two parts
+        //                       ROW INDEX           COL INDEX
         let pivotVal = matrix[Math.floor(right/cols)][right % cols]
 
         if(target === pivotVal) return true
