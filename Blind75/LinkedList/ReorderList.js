@@ -29,8 +29,8 @@ var reorderList = function (head) {
     fast = fast.next.next;
   }
 
-  // convert 1->2->3->4->5->6 into 1->2->3 and 6->5->4
   // reverse the second half in-place
+  // 1->2->3->4->5->6 into 1->2->3 and 6->5->4
   let prev = null,
     curr = slow;
   while (curr != null) {

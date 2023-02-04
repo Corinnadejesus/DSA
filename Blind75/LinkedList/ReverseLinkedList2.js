@@ -8,10 +8,11 @@ Time: O(n) | Space: O(1)
 
 Approach
   - Find
-    - point starting and current nodes at proper places
-    - set your list to hold reversals and tail as a left position node
+    - starting point, position to start your loop, and current nodes at proper places
+    - set list to hold your reversals
+    - set tail as a left position node
 
-  - Reversal
+  - Reverse
     - While the position points towards the node you want to reverse, swap them to reverse and continue pointer
 
   - Merge
