@@ -19,8 +19,9 @@ var removeElements = function (head, val) {
 
            [1, 2,  3,  4, 5, 6]
                P  PN   C  CN
-           the C pointer from 6 is remove because its equals the val
+           the C pointer from 6 is removed because its equals the val
            the prev.next becomes the new pointer at 6 and 3 becomes new prev.next after 6 is removed
+           C pointer is not set to the next value of 4
         */
       prev.next = curr.next;
       curr = curr.next; //increment current
