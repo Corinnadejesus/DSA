@@ -21,12 +21,17 @@ function removeDuplicatesFromLinkedList(linkedList) {
   let curr = linkedList;
   while (curr !== null) {
     let uniqueNode = curr.next;
-    // if first and second value equal [1, 1, 3]
+    // if first and second value are the same Ex. [1, 1, 3]
     while (uniqueNode !== null && uniqueNode.value === curr.value) {
-      //set next value as adjacent value in the list
+      //everytime we see a duplicate move the next value
       uniqueNode = uniqueNode.next;
     }
+    // once we found all duplicate nodes, now we remove them by removing the pointer to them
+    // [1, 1,  3]
+    //  C  CN  U
 
+    // [1, 3, 4]
+    //  P  C
     curr.next = uniqueNode;
     curr = uniqueNode;
   }

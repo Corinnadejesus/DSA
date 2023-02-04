@@ -7,15 +7,15 @@ Output: [1,4,3,2,5]
 Time: O(n) | Space: O(1)
 
 Approach
-  - Pre-reversal
+  - Find
     - point starting and current nodes at proper places
-    - set your list to hold reversals and tail as a beginning pointer in list
+    - set your list to hold reversals and tail as a left position node
 
   - Reversal
     - While the position points towards the node you want to reverse, swap them to reverse and continue pointer
 
-  - Formulate reverseList (easy part)
-    - set your start, the reversed elements, and your tail
+  - Merge
+    - set your start, the reversed elements, then your tail
 
 */
 
