@@ -9,7 +9,8 @@ Explanation: 342 + 465 = 807.
 Time: O(n) | Space: O(n)
 
 Approach
-    - Init our result linked list dummy and carry
+    - Init result list as dummy,
+     and carry
     - Loop over entirety of both lists
         - As long as each has values to iterate, get current value while pointing to the next value
         - Sum current value by the carry

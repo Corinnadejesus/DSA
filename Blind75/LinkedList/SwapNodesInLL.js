@@ -5,7 +5,7 @@ Return the head of the linked list after swapping the values of the kth node fro
 Input: head = [7,9,6,6,7,8,3,0,9,5], k = 5
 Output: [7,9,6,6,(8,7),3,0,9,5]
 
-Time: O(n) | Space: O(n)
+Time: O(n) | Space: O(1)
 
 Approach
     - Find Front at kth node
