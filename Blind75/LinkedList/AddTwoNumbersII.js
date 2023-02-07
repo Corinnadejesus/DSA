@@ -6,6 +6,12 @@ Input: l1 = [7,2,4,3], l2 = [5,6,4]
 Output: [7,8,0,7]
 
 Time: O(n) | Space: O(1)
+
+Approach: Stack
+    - Add Nodes to Stack
+    - Sum values that are Removed from Stack
+    - Get each digit you need
+    - ` 
 */
 
 var addTwoNumbers = function (l1, l2) {

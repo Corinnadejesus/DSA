@@ -17,9 +17,7 @@ Approach
 
   - Merge
     - set your start, the reversed elements, then your tail
-
 */
-
 
 var reverseBetween = function (head, left, right) {
   let current = head;

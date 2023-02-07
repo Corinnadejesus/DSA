@@ -9,24 +9,29 @@ Explanation: 342 + 465 = 807.
 Time: O(n) | Space: O(n)
 
 Approach
-    - Init result list as dummy,
-     and carry
-    - Loop over entirety of both lists
-        - As long as each has values to iterate, get current value while pointing to the next value
-        - Sum current value by the carry
-        - Get the number that is carried
-        - Set new digit with carried number
-        - Formulate linked list with digits at every iteration [dummy, digits]
+    - Carry will hold digits after 9, set it to 0
+    - Init list as dummy, set head to dummy
+    - While both list has values, and carry is not 0 iterate
+        - Set holder for values for list 1 and list 2 at zero
+        - As long as each list is not null, set the current value in the holder and set pointer to the next value
+        - Get the sum of both values and carry
+        - Get the number over 9 that needs to be carried
+        - Get the single digit to make the summed list
+        - Create new node with the digit
+        - Set the next dummy node as the digit
+        - Update dummy as the current digit
+    - Return head.next [0,7,0,8]
 */
 
 var addTwoNumbers = function (l1, l2) {
   let carry = 0;
   let dummy = new ListNode();
   const head = dummy;
-  //EC: when the sum is longer than length of either list
+  //EC: For Carry: when the sum of both list is longer than length of either list
   while (l1 !== null || l2 !== null || carry !== 0) {
     let val1 = 0;
     let val2 = 0;
+
     //EC: if l1 or l2 are diff lengths
     if (l1 !== null) {
       val1 = l1.val;
@@ -39,6 +44,13 @@ var addTwoNumbers = function (l1, l2) {
     }
 
     //EC: when sum of values are over 9, digit needs to be carried
+    /*
+          [2,  4, 3]
+          [5,  6, 4]
+    Sum:  [7, 10, 7]
+    Carry:[0, 1, 0]
+    Digit:[7, 0, 8]
+    */
     const sum = val1 + val2 + carry;
     carry = Math.floor(sum / 10);
     const digit = sum % 10;
@@ -49,24 +61,25 @@ var addTwoNumbers = function (l1, l2) {
 
     //updating dummy for the next iteration of nodes
     dummy = curr;
-    /*
-        [0, 7]
-         D  C
-            DN
-            D
-
-        C = 0
-        [0, 7, 0,]
-               C
-               DN
-               D
-
-        C = 8
-        [0, 7, 0, 8]
-                  C
-                  DN
-                  D
-        */
-  }
-  return head.next;
+}
+return head.next;
 };
+
+/*
+    [0, 7]
+     D  C
+        DN
+        D
+
+    C = 0
+    [0, 7, 0]
+           C
+           DN
+           D
+
+    C = 8
+    [0, 7, 0, 8]
+              C
+              DN
+              D
+    */
