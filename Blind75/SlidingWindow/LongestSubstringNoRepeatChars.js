@@ -54,9 +54,9 @@ function lengthOfLongestSubstring(s) {
 
   //iterate over string
   for (let end = 0; end < s.length; end++) {
-    //if ele is repeating in map and if it is located after the begining of the string
+    //if ele is repeating in map and if it is located after the beginning of the string
     if (map[s[end]] !== undefined && map[s[end]] >= begin) {
-      //update the beginning point to remove that repeating char
+      //update the beginning point to remove that repeating char from the map
       begin = map[s[end]] + 1;
     }
     //otherwise set the value as that char as its been seen
