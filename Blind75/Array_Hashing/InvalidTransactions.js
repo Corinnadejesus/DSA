@@ -18,42 +18,39 @@ Output: ["bob,50,1200,mtv"]
 Time: O(n^2) | Space: O(n)
 */
 
+const isInvalid = (transaction, map) => {
+  const [name, time, amount, city] = transaction.split(",");
+
+  if (amount > 1000) return true;
+
+  const prevTrans = map[name];
+
+  for (const trans of prevTrans) {
+    if (city !== trans.city && Math.abs(time - trans.time) <= 60) return true;
+  }
+
+  return false;
+};
+
 var invalidTransactions = function (transactions) {
-  const invalid = new Set();
-  const info = [];
+  const invalid = [];
+  const map = {};
 
-  // create info arr: each element contains an obj with name, time, price, city, & the raw string of input
-  for (let trans of transactions) {
-    let [name, time, price, city] = trans.split(",");
-    info.push({ name, time, price, city, raw: trans });
-  }
+  for (const trans of transactions) {
+    const [name, time, amount, city] = trans.split(",");
 
-  // sort ascending times
-  info.sort((a, b) => Number(a.time) - Number(b.time));
-
-  // add to invalid if price > 1000
-  for (let infoEl of info) {
-    if (infoEl.price > 1000) {
-      invalid.add(infoEl.raw);
+    if (name in map) {
+      //alice: [ { time: '20', city: 'mtv' }, { time: '50', city: 'beijing' } ]
+      map[name].push({ time, city });
+    } else {
+      //{ alice: [ { time: '20', city: 'mtv' } ] }
+      map[name] = [{ time, city }];
     }
   }
 
-  //iterate over info array and compare two elements at every iteration
-  for (let i = 0; i < info.length - 1; i++) {
-    let curr = info[i];
-    let nextI = i + 1;
-
-    //while the elements are within bounds and less than 60
-    while (nextI < info.length && info[nextI].time - curr.time <= 60) {
-      //as long as the names are the same and the cities are different
-      if (curr.name === info[nextI].name && curr.city !== info[nextI].city) {
-        //push both raw invalid pairs into array
-        invalid.add(curr.raw);
-        invalid.add(info[nextI].raw);
-      }
-      //continue to check next indices
-      nextI++;
-    }
+  for (const trans of transactions) {
+    if (isInvalid(trans, map)) invalid.push(trans);
   }
-  return Array.from(invalid);
+
+  return invalid;
 };

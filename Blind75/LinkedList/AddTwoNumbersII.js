@@ -11,7 +11,9 @@ Approach: Stack
     - Add Nodes to Stack
     - Sum values that are Removed from Stack
     - Get each digit you need
-    - ` 
+    - Start result List with digit
+    - Set carried digit as head
+    - Add digit in result List to head
 */
 
 var addTwoNumbers = function (l1, l2) {
@@ -49,7 +51,7 @@ var addTwoNumbers = function (l1, l2) {
     //set carried value as head
     let head = new ListNode(carry);
 
-    //set head.next as the value in the sumList
+    //set head.next as the value in the sumList (digit)
     head.next = sumList;
     //and set the new head as the value in the sumList
     sumList = head;
