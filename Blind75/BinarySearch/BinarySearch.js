@@ -19,16 +19,17 @@ var search = function (nums, target) {
   let right = nums.length - 1;
 
   while (left <= right) {
-    let mid = Math.floor(left + (right - left) / 2);
+    //recalculate the mid every iteration
+    let mid = Math.floor(left + (right - left) / 2)
     if (nums[mid] === target) {
       return mid;
 
-      //if the middle value is greater than the target, then ignore the left half of the nums array
+      //if the middle value is greater than the target, all left values are smaller than the target, so ignore it
       //and set left to 1 number after of middle value on the right half
     } else if (nums[mid] < target) {
       left = mid + 1;
     } else {
-      //Otherwise the mid value is less than target, ignore the right half
+      //Otherwise the middle value is less than target, ignore the right half
       //and set right to 1 number before the middle value on the left side
       right = mid - 1;
     }
