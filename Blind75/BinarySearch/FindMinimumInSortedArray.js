@@ -31,7 +31,15 @@ var findMin = function (nums) {
       //so we update the left pointer to search the right side
       left = mid + 1;
     } else {
-      right = mid; //not understanding the need to do this?
+      /*
+      [3,1,2]
+       L M R
+
+      Mid is not greater than right here so set the right as the mid value because it the smallest
+      [3,1,2]
+       L R
+      */
+      right = mid;
     }
   }
   return nums[left];
