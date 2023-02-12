@@ -39,3 +39,32 @@ MedianFinder.prototype.findMedian = function () {
     return (this.minHeap.front().element + this.maxHeap.front().element) / 2;
   }
 };
+
+////////////////////////* ALTERNATE *///////////////////////////
+
+//Binary Search Approach -> Time: O(log n) | Space: O(1)
+var MedianFinder = function () {
+  this.arr = [];
+};
+
+MedianFinder.prototype.addNum = function (num) {
+  const bs = (n) => {
+    let start = 0;
+    let end = this.arr.length;
+    while (start < end) {
+      let mid = Math.floor((start + end) / 2);
+      if (n > this.arr[mid]) start = mid + 1;
+      else end = mid;
+    }
+    this.arr.splice(start, 0, n);
+  };
+  if (this.arr.length === 0) this.arr.push(num);
+  else bs(num);
+};
+
+MedianFinder.prototype.findMedian = function () {
+  const mid = Math.floor(this.arr.length / 2);
+  return this.arr.length % 2 === 0
+    ? (this.arr[mid - 1] + this.arr[mid]) / 2
+    : this.arr[mid];
+};
