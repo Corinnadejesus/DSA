@@ -14,35 +14,35 @@ Space: O(n)
 //Time: O(n * log n) -> log n from popping values off based on k (n) size of the heap
 var KthLargest = function (k, nums) {
   this.k = k;
-  this.minPQ = new MinPriorityQueue();
+  this.minHeap = new MinPriorityQueue();
 
   for (let i = 0; i < nums.length; i++) {
-    if (this.minPQ.size() < k) {
+    if (this.minHeap.size() < k) {
       //add values to the queue as long as the size is less than k
-      this.minPQ.enqueue(nums[i]);
+      this.minHeap.enqueue(nums[i]);
     } else if (
-      this.minPQ.size() === k &&
+      this.minHeap.size() === k &&
       nums[i] >= this.minPQ.front().element
     ) {
       //remove the smallest elements that appear at the front of heap until it equals the size of k
-      this.minPQ.enqueue(nums[i]);
-      this.minPQ.dequeue();
+      this.minHeap.enqueue(nums[i]);
+      this.minHeap.dequeue();
     }
   }
 };
 
 //Time: O(n * log k) -> log n from adding and removing values of the heap based on (n) number of function calls to add()
 KthLargest.prototype.add = function (val) {
-  if (this.minPQ.size() < this.k) {
-    this.minPQ.enqueue(val);
-  } else if (val > this.minPQ.front().element) {
-    this.minPQ.enqueue(val);
-    this.minPQ.dequeue();
+  if (this.minHeap.size() < this.k) {
+    this.minHeap.enqueue(val);
+  } else if (val > this.minHeap.front().element) {
+    this.minHeap.enqueue(val);
+    this.minHeap.dequeue();
   }
-  return this.minPQ.front().element;
+  return this.minHeap.front().element;
 };
 
-/* ALTERNATE */
+////////////////////////* ALTERNATE */////////////////////////////////////
 
 //Time: O(n * log n) | Space: O(n)
 var KthLargest = function (k, nums) {
