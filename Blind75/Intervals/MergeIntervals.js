@@ -19,7 +19,7 @@ var merge = function (intervals) {
   //loop over intervals
   for (const interval of intervals) {
     //set end1 as the last element in the results array at index 1
-    let end1 = results[results.length - 1][1];
+    let end1 = results[results.length - 1][1]; //30
 
     //set start2 as first value in interval
     let start2 = interval[0];
@@ -27,8 +27,15 @@ var merge = function (intervals) {
     //set end2 as second value in interval
     let end2 = interval[1];
 
+    /*
+         S    E
+        [0,  30]
+        [5,  10]
+        [15, 20]
+    */
     if (end1 >= start2) {
-      //set the last value of the result array at index 1 = max value of end1 and end2
+      //set the last value of the result array at index 1
+      //to the max value between the last element in the results array and the second value in the interval
       results[results.length - 1][1] = Math.max(end1, end2);
     } else {
       results.push(interval);
