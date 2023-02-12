@@ -11,7 +11,14 @@ Example 2:
 Input: strs = [""]
 Output: [[""]]
 
-Time: O(n) | Space: O(n)
+Time: O(n * log n) | Space: O(n)
+Approach
+  - Sort Input
+  - Iterate over Input
+  - Add Sorted Input to hash map as KEY if doesn't exist already
+  - Add Each Element to hash map as VALUE (in form of an array)
+  - If Sorted Input does exist in hash map push common letter elements into the map
+  - Return the VALUES in the map
 */
 
 var groupAnagrams = function (strs) {
@@ -32,7 +39,7 @@ var groupAnagrams = function (strs) {
 
       //Output => { aet: [ 'eat', 'tea', 'ate' ], ant: [ 'tan', 'nat' ], abt: [ 'bat' ] }
     } else {
-      //otherwise push the sorted strings into the key
+      //otherwise push the common strings into the key
       hashMap[sorted[i]].push(strs[i]);
 
       //Output => { aet: [ 'eat', 'tea', 'ate' ], ant: [ 'tan', 'nat' ] }
