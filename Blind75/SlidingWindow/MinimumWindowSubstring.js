@@ -74,19 +74,16 @@ function minWindow(s, t) {
 //iterate over t
 //if map doesnt have t, set letters and their freq
 
-
 //iterate through s, starting at the right pointer
 //if letter at right pointer is a key in the map decrement the freq of that letter in the map
 //CHECK IF FREQ COUNT IS ZER0
 //decrement the count
 //increment the right to check next letter
 
-
 //iterate as long as count is 0
 //if the difference in our right and left pointer values is less than the len of our previous substring
 //update the length of the previous substring
 //update the minWindow by slicing the indices of the left and right pointers
-
 
 //if letter at left pointer is a key in the map
 //increment the freq of that letter in the map
@@ -95,3 +92,47 @@ function minWindow(s, t) {
 //increment the left to check next letter
 
 //return minWindow
+
+//*************** ALTERNATIVE ******************//
+
+//Time: O(n + m) | Space: O(n)
+var minWindow = function (s, t) {
+  if (t.length > s.length) return "";
+
+  const neededChars = {};
+
+  for (let char of t) {
+    neededChars[char] = (neededChars[char] || 0) + 1;
+  }
+
+  let left = 0;
+  let right = 0;
+  let neededLength = Object.keys(neededChars).length;
+  let substring = "";
+
+  while (right < s.length) {
+    const rightChar = s[right];
+    neededChars[rightChar]--;
+    if (neededChars[rightChar] === 0) neededLength--;
+
+    while (neededLength === 0) {
+      if (!substring || substring.length > right - left + 1) {
+        substring = s.slice(left, right + 1);
+      }
+
+      const leftChar = s[left];
+      // If the leftChar in charMap is at exactly 0 before being
+      // incremented, we now need more leftChars so that its count
+      // in charMap goes down to exactly 0
+      if (neededChars[leftChar] === 0) {
+        neededLength++;
+      }
+      neededChars[leftChar]++;
+      left++;
+    }
+
+    right++;
+  }
+
+  return substring;
+};
