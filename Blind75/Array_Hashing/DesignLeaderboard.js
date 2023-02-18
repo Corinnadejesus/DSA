@@ -22,9 +22,9 @@ class Leaderboard{
     //Time: O(n log n)
     top(k){
       return [...this.map.values()]
-        .sort((a,b)=>b-a)
-        .slice(0,k)
-        .reduce((a,v)=> a + v,0)
+        .sort((a,b)=>b-a) //sort in reverse order
+        .slice(0,k)       //extract largest values
+        .reduce((a,v)=> a + v,0) //get largest value from all
     }
 
     //Time: O(n)
