@@ -10,6 +10,7 @@ Time: O(n) | Space: O(n)
 // Recursion
 function invertTree(root) {
   if (root == null) return root;
+  //take the next left and right node, and recursively swap the children
   [root.left, root.right] = [invertTree(root.right), invertTree(root.left)];
   return root;
 }
