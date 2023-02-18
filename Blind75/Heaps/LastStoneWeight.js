@@ -43,3 +43,18 @@ function lastStoneWeight(stones) {
     //if maxHeap is empty return 0 otherwise return value of the last stone
     return maxHeap.size() === 0 ? 0 : maxHeap.front().element
 }
+
+//////////////////*************** ALTERNATE ******************///////////////////
+
+//Time: O(n log n) | Space: O(n)
+var lastStoneWeight = function(stones) {
+    while (stones.length >= 2) {
+        stones.sort((a,b) => a-b) // explicitly sort asc, or else 10 will be considered smaller than 4
+        const last = stones.pop() // destroy heaviest stone
+        const secondLast = stones.pop() // destroy the second heaviest stone
+        if (last > secondLast) {
+            stones.push(last - secondLast)
+        }
+    }
+    return stones.length === 1 ? stones[0] : 0
+ };
