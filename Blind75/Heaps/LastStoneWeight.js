@@ -30,16 +30,16 @@ function lastStoneWeight(stones) {
 
     //while there are stones in the maxHeap
     while(maxHeap.size() > 1) {
-        //Get the first and second stones
-        let first = maxHeap.front().element
-        let second = maxHeap.front().element
+        //Remove the first and second stones
+        let first = maxHeap.dequeue().element
+        let second = maxHeap.dequeue().element
 
         //if first != second then insert the difference of (first-second) into the queue
         if(first !== second) {
-            queue.enqueue(first-second)
+            maxHeap.enqueue(first-second)
         }
     }
-    
+
     //if maxHeap is empty return 0 otherwise return value of the last stone
     return maxHeap.size() === 0 ? 0 : maxHeap.front().element
 }
