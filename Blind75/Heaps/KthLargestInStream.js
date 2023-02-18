@@ -6,7 +6,7 @@ int add(int val) Appends the integer val to the stream and returns the element r
 
 Example:
 KthLargest kthLargest = new KthLargest(3, [4, 5, 8, 2]);
-kthLargest.add(3);   // return 4
+kthLargest.add(3);   // return 4 => [3, 4, 5, 8, 2]
 
 Space: O(n)
 */
@@ -22,7 +22,7 @@ var KthLargest = function (k, nums) {
       this.minHeap.enqueue(nums[i]);
     } else if (
       this.minHeap.size() === k &&
-      nums[i] >= this.minPQ.front().element
+      nums[i] >= this.minHeap.front().element
     ) {
       //remove the smallest elements that appear at the front of heap until it equals the size of k
       this.minHeap.enqueue(nums[i]);

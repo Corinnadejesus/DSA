@@ -49,3 +49,27 @@ Approach
 //     }
 //     return -1
 // }
+
+function shortestCellPath(grid, sr, sc, tr, tc) {
+    let queue = [sr, sc, 0]
+    let map = new Map()
+    map.add((sr, sc))
+
+    while(queue !== null) {
+        let [row, col, depth] = queue.shift()
+        if(row === tr && col === tc) return depth
+        let directions = [
+            [-1, 0],
+            [1, 0],
+            [0, -1],
+            [0, 1]
+        ]
+        for(let [currentRow, currentCol] of directions) {
+            if(0 <= currentRow && 0 <= currentCol && grid[currentRow][currentCol] === 1 && !(map.has([currentRow, currentCol]))) {
+                queue.push([currentRow, currentCol, depth + 1])
+                map.add([currentRow, currentCol])
+            }
+        }
+    }
+    return -1
+}
