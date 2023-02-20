@@ -24,12 +24,12 @@ var isSameTree = function (p, q) {
 //BFS
 //Time: O(n) | Space: O(n)
 var isSameTree = function (p, q) {
-  const stack = [p, q];
-  while (stack.length) {
-    n2 = stack.pop();
+  const queue = [p, q];
+  while (queue.length) {
+    const n1 = queue.pop(), n2 = queue.pop();
     if (!n1 && !n2) continue;
     if (!n1 || !n2 || n1.val !== n2.val) return false;
-    stack.push(n1.left, n2.left, n1.right, n2.right);
+    queue.push(n1.left, n2.left, n1.right, n2.right);
   }
   return true;
 };
