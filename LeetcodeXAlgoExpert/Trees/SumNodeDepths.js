@@ -13,7 +13,7 @@ Tree =
 Output: 16
 */
 
-//Recursion
+//DFS Recursive
 //Time: O(n) | Space: O(n)
 function nodeDepths(root, depth = 0) {
   if (root === null) return 0;
@@ -23,7 +23,7 @@ function nodeDepths(root, depth = 0) {
   );
 }
 
-//DFS
+//DFS Iterative
 //Time: O(n) | Space: O(n)
 function nodeDepths(root) {
   let sum = 0;
