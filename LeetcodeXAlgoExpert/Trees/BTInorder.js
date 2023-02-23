@@ -3,7 +3,7 @@ Given the root of a binary tree, return the inorder traversal of its nodes' valu
 Input: root = [1,null,2,3]
 Output: [1,3,2]
 
-Time: O(n) | Space: O(n)
+Time: O(n) | Space: O(h) h -> maximum height of the tree
 */
 
 var inorderTraversal = function (root) {
@@ -20,9 +20,9 @@ var inorderTraversal = function (root) {
       stack.push(currentNode);
       currentNode = currentNode.left;
     } else {
-      // finishing the above loop, it means we are at the deepest left node we could get and all ar added, so now we need to point the currentNode to the parentNode. We do this by popping the last item in our callstack, which was the parentNode. pop returns the last item, currentNode is now the last Item (Parent)
+      //We are now at the deepest left node we could get and all are added, so now we need to point the currentNode to the parentNode. We do this by popping the last item in our callstack, which was the parentNode.
       currentNode = stack.pop();
-      // We add currentNode to the result, because inorder traversal is ""left-root-right"-order", so we always add the most left node which is left (and has no left children)
+      // We add currentNode to the result, because inorder traversal is "left-root-right", so we always add the most left node which is left (and has no left children)
       result.push(currentNode.val);
       // then we point the pointer to the right node (even if its null)
       currentNode = currentNode.right;

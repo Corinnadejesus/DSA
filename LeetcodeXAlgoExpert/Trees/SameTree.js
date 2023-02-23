@@ -10,7 +10,7 @@ Output: false
 */
 
 //Recursive
-//Time: O(n) | Space: O(1)
+//Time: O(n) | Space: O(h) h -> maximum height of the tree for every recursive call
 var isSameTree = function (p, q) {
   //base cases
   if (p === null && q === null) return true;

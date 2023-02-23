@@ -14,7 +14,7 @@ Output: 16
 */
 
 //DFS Recursive
-//Time: O(n) | Space: O(n)
+//Time: O(n) | Space: O(h) h -> maximum height of the tree for every recursive call
 function nodeDepths(root, depth = 0) {
   if (root === null) return 0;
   //adding the current depth at every recursive call while adding the depth of left and right sides

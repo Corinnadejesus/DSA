@@ -7,7 +7,7 @@ Output: [4,7,2,9,6,3,1]
 Time: O(n) | Space: O(n)
 */
 
-// Recursion
+// DFS Recursive
 function invertTree(root) {
   if (root == null) return root;
   //take the next left and right node, and recursively swap the children
@@ -15,7 +15,7 @@ function invertTree(root) {
   return root;
 }
 
-// DFS
+// DFS Iterative
 function invertTree(root) {
   const stack = [root];
 
@@ -30,7 +30,7 @@ function invertTree(root) {
   return root;
 }
 
-// BFS
+// BFS Iterative
 function invertTree(root) {
   const queue = [root];
   while (queue.length) {
