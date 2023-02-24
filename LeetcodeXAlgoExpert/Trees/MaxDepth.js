@@ -9,7 +9,7 @@ Input: root = [1,null,2]
 Output: 2
 
 Time: O(n) | Space: O(h) h -> maximum height of the tree for every recursive call
-Approach (Recursive)
+Approach (DFS Recursive)
     - Base Case: If the root is null return root
     - Get the depth of the left and right trees by recursively calling both left and right sides
     - Get the maximum depth of left and right sides, adding 1 to include the root

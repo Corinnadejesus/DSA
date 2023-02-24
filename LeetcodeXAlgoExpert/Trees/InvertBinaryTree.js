@@ -27,7 +27,7 @@ function invertTree(root) {
     }
   }
 
-  return root;
+  return root; //[4,2]
 }
 
 // BFS Iterative
