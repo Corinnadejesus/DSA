@@ -9,19 +9,19 @@ null | 1 -> 2 -> 3 -> 4 -> 5
 p      c    n
 
       1 <- 2 -> 3 -> 4 -> 5
-       p    c    n
+      p   c,n (break link, set current.next to prev value)
 
       1 <- 2 <- 3 -> 4 -> 5
-            p    c    n
+           p   c,n
 
       1 <- 2 <- 3 <- 4 -> 5
-                 p    c    n
+                p   c,n
 
       1 <- 2 <- 3 <- 4 <- 5 -> null
-                      p    c    n
+                     p   c,n
 
       1 <- 2 <- 3 <- 4 <- 5 -> null
-                            p    cn
+                          p    c,n
 
 Time: O(n) | Space: (1)
 */

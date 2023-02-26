@@ -22,13 +22,14 @@ var mergeTwoLists = function(list1, list2) {
         if(list1.val <= list2.val) {
             prev.next = list1 //set to second value of list1
             prev = list1 //set to first value of list1
-            list1 = list1.next //increments past the first value to get the next value
+            list1 = list1.next //increments to get to the next value
         } else {
             prev.next = list2
             prev = list2
             list2 = list2.next
         }
     }
+    
     //in the case of difference lengths of list1 or list2
     if(list1 === null) prev.next = list2
     if(list2 === null) prev.next = list1
