@@ -14,9 +14,28 @@ Approach (DFS Recursive)
     - Get the depth of the left and right trees by recursively calling both left and right sides
     - Get the maximum depth of left and right sides, adding 1 to include the root
 */
-var maxDepth = function(root) {
-    if(root === null) return 0
-    let leftDepth = maxDepth(root.left)
-    let rightDepth = maxDepth(root.right)
-    return Math.max(leftDepth, rightDepth) + 1
+
+//DFS Recursive
+var maxDepth = function (root) {
+  if (root === null) return 0;
+  let leftDepth = maxDepth(root.left);
+  let rightDepth = maxDepth(root.right);
+  return Math.max(leftDepth, rightDepth) + 1;
+};
+
+//BFS
+var maxDepth = function (root) {
+  let q = [root];
+  let count = 0;
+  while (q.length) {
+    const next = [];
+    for (const n of q) {
+      if (!n) continue;
+      next.push(n.left);
+      next.push(n.right);
+    }
+    if (next.length) count++;
+    q = next;
+  }
+  return count;
 };
