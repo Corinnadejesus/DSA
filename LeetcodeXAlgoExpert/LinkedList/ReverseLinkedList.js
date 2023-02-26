@@ -4,31 +4,24 @@ Given the head of a singly linked list, reverse the list, and return the reverse
 Approach
 At every iteration, the pointers shift. The previous value is being reassigned to the last known head as current and next values are incremented and the value of the previous is being returned at every iteration. When the current equals null the pointer shift for the final time before loop break.
 
-    [1, 2, 3, 4, 5]
-     c  n
+Walk-Through
+null | 1 -> 2 -> 3 -> 4 -> 5
+p      c    n
 
-    [1, 2, 3, 4, 5]
-     p  c  n
+      1 <- 2 -> 3 -> 4 -> 5
+       p    c    n
 
-    [1, 2, 3, 4, 5]
-        p  c  n
+      1 <- 2 <- 3 -> 4 -> 5
+            p    c    n
 
-    [1, 2, 3, 4, 5]
-           p  c  n
+      1 <- 2 <- 3 <- 4 -> 5
+                 p    c    n
 
-    [1, 2, 3, 4, 5]
-           p  c  n
-                 n = null
+      1 <- 2 <- 3 <- 4 <- 5 -> null
+                      p    c    n
 
-    [1, 2, 3, 4, 5]
-              p  c
-
-    [1, 2, 3, 4, 5]
-              p  c
-                 c = null
-
-    [1, 2, 3, 4, 5]
-                 p
+      1 <- 2 <- 3 <- 4 <- 5 -> null
+                            p    cn
 
 Time: O(n) | Space: (1)
 */
@@ -43,10 +36,13 @@ var reverseList = function (head) {
 
   while (curr !== null) {
     next = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = next;
+    curr.next = prev; //this breaks the link and reverses it
+    prev = curr; //moves previous to the next value
+    curr = next; //moves current to the next value
   }
 
+  //at the end of our list, prev will fall at the last node in the list which has all links that was just reversed
   return prev;
 };
+
+
