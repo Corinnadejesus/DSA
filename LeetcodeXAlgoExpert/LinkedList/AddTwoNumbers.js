@@ -10,9 +10,9 @@ Time: O(n) | Space: O(n)
 
 Approach
     - Carry will hold digits after 9, set it to 0
-    - Init list as dummy, set head to dummy
-    - While both list has values, and carry is not 0 iterate
-        - Set holder for values for list 1 and list 2 at zero
+    - Init dummy as a new list, set head to dummy
+    - While both lists has values, and carry is not 0, iterate
+        - Set a holder for values for list 1 and list 2 to zero
         - As long as each list is not null, set the current value in the holder and set pointer to the next value
         - Get the sum of both values and carry
         - Get the number over 9 that needs to be carried
@@ -55,11 +55,11 @@ var addTwoNumbers = function (l1, l2) {
     carry = Math.floor(sum / 10);
     const digit = sum % 10;
 
-    //turning digits into linked list
+    //turning digit into linked list
     const curr = new ListNode(digit);
     dummy.next = curr;
 
-    //updating dummy for the next iteration of nodes
+    //update dummy for the next iteration of nodes
     dummy = curr;
 }
 return head.next;
