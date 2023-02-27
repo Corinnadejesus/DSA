@@ -11,7 +11,8 @@ Explanation: (100) + (101) + (110) + (111) = 4 + 5 + 6 + 7 = 22
 
 Convert decimal numbers into binary
     - Repeatedly dividing by 2, the remainder at each division is the binary number
-Convert binary into decimal (ex. 101)
+
+    Convert binary into decimal (ex. 101)
     - Multiply each digit of the binary number by the corresponding power of two:
         - (1 x 2)^2 + (0 x 2)^1 + (1 x 2)^0
     - Add the result
@@ -21,6 +22,19 @@ Algorithm to convert binary to decimal:
 For every new digit, multiply current value by 2 and add the new digit
 
 Time: O(n) | Space: O(h)
+
+Approach
+Init pathSum as 0
+Init DFS helper function that takes in a (node) and (currSum = 0)
+    - if node is null return node
+    - convert binary number to decimal
+        - take the current sum and multiply it by 2
+        - add the value of the node to the current sum
+    - if left and right LEAF nodes are null
+        - add the current sum of the leaf nodes to the path sum and return that value
+    - call DFS on the left and right subtrees and the current sum
+Call DFS on the root
+return pathSum
 */
 
 var sumRootToLeaf = function (root) {
