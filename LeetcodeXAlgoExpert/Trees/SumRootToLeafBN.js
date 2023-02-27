@@ -29,7 +29,7 @@ var sumRootToLeaf = function (root) {
   function dfs(node, currSum = 0) {
     if (!node) return root;
 
-    //convert binary here
+    //convert binary to decimal
     currSum *= 2;
     currSum += node.val;
 
