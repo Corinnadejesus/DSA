@@ -45,7 +45,7 @@ var sumRootToLeaf = function (root) {
   return pathSum;
 };
 
-//////////////////////*********************** ALTERATE **********************///////////////////////
+//////////////////////*********************** ALTERNATE **********************///////////////////////
 
 var sumRootToLeaf = function (root) {
   let sum = 0;
