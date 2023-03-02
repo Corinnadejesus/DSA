@@ -8,20 +8,17 @@ Output: 2
 Time: O(n) | Space: O(1)
 */
 
-function bracketMatch(text) {
-  let stack = [];
-  let count = 0;
-  for (let i = 0; i < text.length; i++) {
-    if (text[i] == "(") {
-      stack.push(text[i]);
-    } else {
-      if (stack.length === 0) {
-        count++;
+var minAddToMakeValid = function(s) {
+  let countOpen = 0
+  let countClosed = 0
+  for(const char of s) {
+      if(char === '(') {
+          countOpen++
+      } else if(countOpen > 0) {
+          countOpen--
+      } else {
+          countClosed++
       }
-
-      stack.pop();
-    }
   }
-
-  return count + stack.length;
-}
+  return countOpen + countClosed
+};
