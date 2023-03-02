@@ -1,9 +1,11 @@
 /*
 Given a string that consists of brackets, write a function bracketMatch that takes a bracket string as an input and returns the minimum number of brackets you’d need to add to the input in order to make it correctly matched -> ().
 
-Example:
 Input: “(())()”
 Output: 2
+
+Input: s = "())"
+Output: 1
 
 Time: O(n) | Space: O(1)
 */
