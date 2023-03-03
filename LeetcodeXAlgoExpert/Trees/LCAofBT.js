@@ -5,23 +5,22 @@ According to the definition of LCA on Wikipedia: “The lowest common ancestor i
 Time: O(n) | Space: O(h)
 */
 
+//Postorder Traversal (left, right, root)
 var lowestCommonAncestor = function (root, p, q) {
-  let result = null;
+  if (!root) return root;
 
-  const dfs = (node) => {
-    if (node === null) return false;
+  if (root.val === p.val || root.val === q.val) {
+    return root;
+  }
 
-    let left = dfs(node.left);
-    let right = dfs(node.right);
+  const left = lowestCommonAncestor(root.left, p, q);
+  const right = lowestCommonAncestor(root.right, p, q);
 
-    let curr = node === p || node === q;
-    //if 2/3 nodes are true then we reassign result to its lowest common ancestor
-    if (left + right + curr >= 2) {
-      result = node;
-    }
+  if (left && right) {
+    return root;
+  }
 
-    return left || right || curr;
-  };
-  dfs(root);
-  return result;
+  if (left) return left;
+  if (right) return right;
+  return null;
 };
