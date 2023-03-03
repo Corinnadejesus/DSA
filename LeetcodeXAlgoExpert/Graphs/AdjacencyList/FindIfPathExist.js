@@ -29,7 +29,7 @@ Traverse through edges
     - If the graph has the vertex, then set the edge. Otherwise set the vertex and [edge]
     - If the graph has the edge, then set the vertex. Otherwise set the edge and [vertex]
 Create the DFS Helper Function to visit neighbors
-If the set contains the value of the destination return true otherwise return false
+Call DFS on the source and return true/false if the set contains the value of the destination
 */
 
 var validPath = function (n, edges, source, destination) {
