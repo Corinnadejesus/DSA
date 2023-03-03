@@ -40,7 +40,7 @@ MedianFinder.prototype.findMedian = function () {
   }
 };
 
-////////////////////////* ALTERNATE *///////////////////////////
+////////////////////////****************** ALTERNATE **********************///////////////////////////
 
 //Binary Search Approach -> Time: O(log n) | Space: O(1)
 var MedianFinder = function () {
