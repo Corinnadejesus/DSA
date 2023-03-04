@@ -1,5 +1,5 @@
 /*
-There is a bi-directional graph with n vertices, where each vertex is labeled from 0 to n - 1 (inclusive). The edges in the graph are represented as a 2D integer array edges, where each edges[i] = [ui, vi] denotes a bi-directional edge between vertex ui and vertex vi. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself.
+There is a bi-directional adjaList with n vertices, where each vertex is labeled from 0 to n - 1 (inclusive). The edges in the adjaList are represented as a 2D integer array edges, where each edges[i] = [ui, vi] denotes a bi-directional edge between vertex ui and vertex vi. Every vertex pair is connected by at most one edge, and no vertex has an edge to itself.
 
 You want to determine if there is a valid path that exists from vertex source to vertex destination.
 
@@ -31,35 +31,35 @@ Create a map to build adjacency list
         - Add source to the destination
 Create a set to include all visited vertex
 Traverse through edges
-    - If the graph has the vertex, then set the edge. Otherwise set the vertex and [edge]
-    - If the graph has the edge, then set the vertex. Otherwise set the edge and [vertex]
+    - If the adjaList has the vertex, then set the edge. Otherwise set the vertex and [edge]
+    - If the adjaList has the edge, then set the vertex. Otherwise set the edge and [vertex]
 Create the DFS Helper Function to visit neighbors
 Call DFS on the source and return true/false if the set contains the value of the destination
 */
 
 var validPath = function (n, edges, source, destination) {
-  let graph = new Map();
+  let adjaList = new Map();
   let visited = new Set();
 
   //Build adjacency list with Map
   for (let [vertex, edge] of edges) {
-    if (graph.has(vertex)) {
-      graph.get(vertex).push(edge);
+    if (adjaList.has(vertex)) {
+      adjaList.get(vertex).push(edge);
     } else {
-      graph.set(vertex, [edge]);
+      adjaList.set(vertex, [edge]);
     }
 
-    if (graph.has(edge)) {
-      graph.get(edge).push(vertex);
+    if (adjaList.has(edge)) {
+      adjaList.get(edge).push(vertex);
     } else {
-      graph.set(edge, [vertex]);
+      adjaList.set(edge, [vertex]);
     }
   }
 
   //DFS through Neighbors
   function dfs(vertex) {
     visited.add(vertex);
-    let neighbors = graph.get(vertex);
+    let neighbors = adjaList.get(vertex);
     if (neighbors && neighbors.length > 0) {
       for (let neighbor of neighbors) {
         //if neighbor hasn't been visited recursive call dfs to all neighbors
