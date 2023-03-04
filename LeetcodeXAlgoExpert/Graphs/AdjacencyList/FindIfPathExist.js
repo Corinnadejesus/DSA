@@ -24,6 +24,11 @@ Map {
 Set (0, 1, 2)
 
 Create a map to build adjacency list
+    - FOR DIRECTED GRAPHS
+        - Add the destination to the source
+    - FOR UNDIRECTED GRAPHS (mirroring needed)
+        - Add the destination to the source
+        - Add source to the destination
 Create a set to include all visited vertex
 Traverse through edges
     - If the graph has the vertex, then set the edge. Otherwise set the vertex and [edge]
