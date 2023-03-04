@@ -14,4 +14,43 @@ Output: false
 Explanation: There are a total of 2 courses to take.
 To take course 1 you should have finished course 0, and to take course 0 you should also have finished course 1. So it is impossible.
 
+Time: O(v + e) | Space: O(v)
 */
+
+var canFinish = function (numCourses, prerequisites) {
+  let adjaList = {};
+  let visited = new Set();
+
+  for (let [vertex, edge] of prerequisites) {
+    if (!adjaList[vertex]) {
+      adjaList[vertex] = [edge];
+    } else {
+      adjaList[vertex].push(edge);
+    }
+  }
+
+  function dfs(currNode) {
+    if (visited.has(currNode)) return false;
+    if (adjaList[currNode] === []) return true;
+
+    visited.add(currNode);
+
+    if (adjaList[currNode]) {
+      for (let neighbors of adjaList[currNode]) {
+        console.log(neighbors);
+        if (!dfs(neighbors)) return false;
+      }
+    }
+
+    visited.delete(currNode);
+    adjaList[currNode] = [];
+    return true;
+  }
+
+  for (let key in adjaList) {
+    if (!dfs(key)) {
+      return false;
+    }
+  }
+  return true;
+};
