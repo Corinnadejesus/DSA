@@ -13,46 +13,55 @@ Output: "abcabccdcdcdef"
 Time: O(n) | Space: O(n)
 
 Approach
-    - Iterate over s
-        - Populate Stack
-        - Get all the chars before ] from stack
-            - while chars are not [
-                - Add letter and number chars to decode string
-        - While the top of stack has a number
-            - Remove the number from the stack
-        - Build to decoded string with as many letters as the number
-        - Add the decoded string back onto the stack backwards
-    - Return the joined stack items
+  - Iterate over s
+    - For ]
+      - Populate Stack with Letters and Numbers before open bracket
+      - Pop off open bracket
+      - Get the number in the stack
+      - Build our decoded string by repeating k times
+      - Iterate over decoded string pushing it back into stack
+    - Otherwise push all other chars into stack
+  - Return stack joined into a string
 
+KEY:
+  - POPULATE STACK, REMOVE UNWANTED BRACKETS
+  - GET K NUMBER FROM STACK
+  - BUILD DECODED STRING WITH K REPEATED
+  - PUSH DECODED STRING BACK INTO STACK
+  - TURN STACK INTO STRING
 */
 
 var decodeString = function (s) {
   if (!s || !isNaN(s)) return "";
 
   const stack = [];
-  let decodedStr = "";
 
   for (const char of s) {
     if (char === "]") {
+      let decodedStr = "";
+
+      // Grab all characters before open bracket
       while (stack[stack.length - 1] !== "[") {
-        //add top items into stack as long as it is not [
-        decodedStr += stack.pop();
+        // We do it this way so the string can be in order
+        decodedStr = stack.pop() + decodedStr;
       }
 
-      stack.pop(); // pop off the open bracket
+      // Pop off the open bracket
+      stack.pop();
 
       let k = "";
-      // While the character at the top of the stack is a number...
+
+      // While our stack has a length, and the character we're at is a number...
       while (!isNaN(stack[stack.length - 1])) {
         k = stack.pop() + k;
       }
 
-      // Build our decoded string using the repeat method. And convert K into a number
+      // Use the repeat method based on the number we grabbed
       decodedStr = decodedStr.repeat(Number(k));
 
-      // Push decoded string back onto the stack
-      for (let i = decodedStr.length - 1; i >= 0; i--) {
-        stack.push(decodedStr[i]);
+      // Push each char of our newly generated string to store it in our stack.
+      for (const str of decodedStr) {
+        stack.push(str);
       }
     } else {
       stack.push(char);
