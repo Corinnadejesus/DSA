@@ -21,21 +21,16 @@ Approach - DFS Recursive
     -
 */
 
-var flatten = function(root) {
-    if (root === null) return;
-    if (root.left) {
-		// step 1: find the most right leaf of current left node
-        var last = root.left;
-        while (last.right !== null) last = last.right;
-        // step 2: keep current right node in a tmp var
-        var tmp = root.right;
-		// step 3: we move the left child to our right.
-        root.right = root.left;
-		// step 4: connect previous right node(tmp) to the right of the most right leaf we found
-        last.right = tmp;
-		// step 5: make current left null
-        root.left = null;
-    }
+var flatten = function (root) {
+  if (root === null) return;
+  if (root.left) {
+    var last = root.left;
+    while (last.right !== null) last = last.right;
+    var tmp = root.right;
+    root.right = root.left;
+    last.right = tmp;
+    root.left = null;
+  }
 
-    flatten(root.right);
+  flatten(root.right);
 };
