@@ -25,7 +25,7 @@ output: -1
 
 Time: O(r * c) | Space: O(r * c) -> the space to store the queue and seen
 
-Approach
+Approach: BFS
     - Finding a shortest path is typically done with a breadth first search. Here, nodes are locations on the grid with value 1, and two nodes are neighbors if they are 4-directionally adjacent.
 
     - The breadth first search algorithm is given a source in the graph, and it explores all nodes distance 0 from the source, then all nodes distance 1, then all nodes distance 2, and so on. The algorithm records the node’s distance when it visits, and that way we can determine the shortest path in the graph to some target node.
