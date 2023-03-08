@@ -9,18 +9,12 @@ Input: text1 = "abcde", text2 = "ace"
 Output: 3
 Explanation: The longest common subsequence is "ace" and its length is 3.
 
-Example 2:
-Input: text1 = "abc", text2 = "abc"
-Output: 3
-Explanation: The longest common subsequence is "abc" and its length is 3.
-
 Example 3:
 Input: text1 = "abc", text2 = "def"
 Output: 0
 Explanation: There is no such common subsequence, so the result is 0.
 */
 
-// DYNAMIC PROGRAMMING PROBLEM (SOLVE WITH A TABLE)
 // T: O(n^2) | S: O(n)
 function longestCommonSeq(text1, text2) {
   //create table X: text1, Y: text2
