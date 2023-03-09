@@ -15,6 +15,7 @@ Output: 0
 Explanation: There is no such common subsequence, so the result is 0.
 */
 
+// Tabulation Solution
 // T: O(n^2) | S: O(n)
 function longestCommonSeq(text1, text2) {
   //create table X: text1, Y: text2
