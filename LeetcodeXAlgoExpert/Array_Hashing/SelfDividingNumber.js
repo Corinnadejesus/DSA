@@ -14,6 +14,11 @@ Approach
     - convert input to string
     - loop through if ele is a 0 or division of itself has a remainder its not self-dividing
  - Iterate and call divideRules func on each index to check if any values from left to right have a remainder
+
+ Time Complexity: O(D), where D is the number of integers in the range [L,R] and assuming log⁡(R) is bounded.
+ In general, the complexity would be O(D log ⁡R).
+
+Space Complexity: O(D), the length of the answer.
 */
 
 var selfDividingNumbers = function (left, right) {
