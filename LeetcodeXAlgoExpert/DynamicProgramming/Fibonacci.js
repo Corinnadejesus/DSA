@@ -11,8 +11,18 @@ Input: n = 4
 Output: 3
 Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
 */
-// Time: O(n^2) | Space: O(1)
-var fib = function(n) {
-    if(n <= 1) return n
-    return (fib(n - 1) + fib(n - 2))
+// RECURSION
+//Time: O(n^2) | Space: O(1)
+var fib = function (n) {
+  if (n <= 1) return n;
+  return fib(n - 1) + fib(n - 2);
+};
+
+// MEMOIZATION
+var fib = function (n, memo = []) {
+  if (memo[n]) return memo[n];
+  if (n <= 1) return n;
+  let result = fib(n - 1, memo) + fib(n - 2, memo);
+  memo[n] = result;
+  return result;
 };
