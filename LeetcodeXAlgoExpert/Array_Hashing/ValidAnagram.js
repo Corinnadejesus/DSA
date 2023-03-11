@@ -12,51 +12,47 @@
 
 //Time and Space Complexity: O(n)
 
-var isAnagram = function(s, t) {
-    //check the case if the length is not equal
-    if(s.length !== t.length) return false
+var isAnagram = function (s, t) {
+  //EDGE CASE: if the length of both strings are not equal
+  if (s.length !== t.length) return false;
 
-    //init hashmap
-    let hashMap = {}
+  let hashMap = {};
 
-    //iterate over s length reference
-    for(let i of s) {
-        //set the key of hashmap to each element of s and set it at 1 since its been seen already
-        hashMap[i] = (hashMap[i] || 0) + 1
+  for (let i of s) {
+    //set the key of hashmap to each element of s and set it at 1 since its been seen already
+    hashMap[i] = (hashMap[i] || 0) + 1;
+  }
+
+  for (let j of t) {
+    //if letter of t is not the same as letter of s in map
+    //OR the frequency of letters seen in map hits 0 (edge case to ensure the freq does not get to a negative number)
+    if (!hashMap[j] || hashMap[j] === 0) {
+      return false;
+    } else {
+      //otherwise it has been seen, decrease the value from the hashmap and check the next letter
+      hashMap[j]--;
     }
-
-    //iterate over t length
-    for(let j of t) {
-        //if element of t does not exist OR has not been seen in hashmap
-        if(!hashMap[j] || hashMap[j] === 0) {
-            return false
-        } else {
-            //otherwise it has been seen, decrease the value from the hashmap and check the next letter
-            hashMap[j]--
-        }
-    }
-    return true
-
+  }
+  return true;
 };
 
+//////////////////**************** ALTERNATIVE **************////////////////////
+var isAnagram = function (s, t) {
+  if (s.length !== t.length) return false;
 
-//Anne Solution
-// var isAnagram = function(s, t) {
-//     if (s.length !== t.length) return false;
+  let hashMap = {};
 
-//     let hashMap = {};
+  for (let char of s) {
+    if (!hashMap[char]) {
+      hashMap[char] = 0;
+    }
+    hashMap[char]++;
+  }
 
-//     for (let char of s) {
-//         if (!hashMap[char]) {
-//             hashMap[char] = 0;
-//         }
-//         hashMap[char]++;
-//     }
+  for (let char of t) {
+    hashMap[char]--;
+    if (hashMap[char] === 0) delete hashMap[char];
+  }
 
-//     for (let char of t) {
-//         hashMap[char]--;
-//         if (hashMap[char] === 0) delete hashMap[char]
-//     }
-
-//     return !Object.keys(hashMap).length;
-// };
+  return !Object.keys(hashMap).length;
+};
