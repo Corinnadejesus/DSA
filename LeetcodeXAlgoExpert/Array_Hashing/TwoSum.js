@@ -11,30 +11,7 @@ Example 2:
 
 Input: nums = [3,2,4], target = 6
 Output: [1,2]
-
-//Time and Space Complexity: O(n)
 */
-
-var twoSum = function (nums, target) {
-  //init map
-  const hashMap = {};
-  //iterate over nums array
-
-  for (let i = 0; i < nums.length; i++) {
-    //get the value needed by subtracting target from current element of array
-    const numNeeded = target - nums[i];
-
-    //if needed value is a key in the map
-    if (hashMap[numNeeded] !== undefined) {
-      //return [needed value, current index]
-      return [numNeeded, i]
-    }
-    //otherwise set the needed value as a key in the map and store the value as an index if needed to search for later
-    hashMap[numNeeded] = i
-  }
-};
-
-//////////////////******************* ALTERNATE ********************///////////////////////
 
 //Brute Force
 // Time O(N^2) | Space O(1)
@@ -48,5 +25,26 @@ var twoSum = function (nums, target) {
         return [i, j];
       }
     }
+  }
+};
+
+//Optimal
+//Time: O(n) | Space O(n)
+var twoSum = function (nums, target) {
+  //init map
+  const hashMap = {};
+  //iterate over nums array
+
+  for (let i = 0; i < nums.length; i++) {
+    //get the value needed by subtracting target from current element of array
+    const numNeeded = target - nums[i];
+
+    //if map key is not undefined, edge case for the first iteration
+    if (hashMap[numNeeded] !== undefined) {
+      //extract the numNeeded as the key and its index as the value from the map
+      return [map[numNeeded], i];
+    }
+    //otherwise set the current element as a key in the map and store current element's index as the value if needed to search for later
+    hashMap[nums[i]] = i;
   }
 };
