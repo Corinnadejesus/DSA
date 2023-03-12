@@ -33,18 +33,19 @@ var OrderedStream = function (n) {
   this.stream = new Array(n);
   this.pointer = 0;
 };
-/*
-                p
-    stream = ['aaa','bbb','ccc',0,0]
-    chunk = [bbb,ccc ]
 
-    insert(3, ccc) => []
-    insert(1, aaa) => [aaa]
-    insert(2, bbb) => [bbb,ccc]
- */
+/*
+    p
+  [a,    b,    c,     d,    e,  null]
+  []    [a]   []    [b,c]  []   [d,e]
+*/
 OrderedStream.prototype.insert = function (idKey, value) {
   const chunk = [];
+  // since array indices start from zero and id in this problem from 1 we need to decrement it
   this.stream[idKey - 1] = value;
+
+  // every time we insert a value we have to look if there is a value at the index (pointer) that should be returned
+  // if there is any we copy it and then iterate to the next element until the condition is no longer true
   while (this.stream[this.pointer]) {
     chunk.push(this.stream[this.pointer]);
     this.pointer++;
