@@ -30,16 +30,14 @@ TARGET VALUE => nums[j] + nums[k] = 0 - nums[i]
     - If the curr val is a previous duplicate skip it
     - Set target value, left and right pointers
     - While left is less than right
-        - If the sum of left, right, and curr is less than 0 -> increment left
-        - Else if its greater -> decrement right
-        - Else we found a triplet
+        - *If the sum of left, right is less than target-> increment left
+        - *Else if its greater than target -> decrement right
+        - *Else we found a triplet
             - Add array of trips (left, right, curr) to holdTrips array
             - while duplicates exist on left side -> increment left
             - while duplicates exist on right side -> decrement right
             - Decrement right, increment left to look for other triplets
 */
-
-//Approach: Two Sum with Added Steps
 
 var threeSum = function (nums) {
   nums.sort((a, b) => a - b);
