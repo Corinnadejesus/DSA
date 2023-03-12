@@ -12,7 +12,7 @@ Approach
     - Carry will hold digits after 9, set it to 0
     - Init dummy as a new list, set head to dummy
     - While both lists has values, and carry is not 0, iterate
-        - Set a holder for values for list 1 and list 2 to zero
+        - Set variables for list 1 and list 2 values at 0
         - As long as each list is not null, set the current value in the holder and set pointer to the next value
         - Get the sum of both values and carry
         - Get the number over 9 that needs to be carried
@@ -20,14 +20,14 @@ Approach
         - Create new node with the digit
         - Set the next dummy node as the digit
         - Update dummy as the current digit
-    - Return head.next [0,7,0,8]
+    - Return head.next
 */
 
 var addTwoNumbers = function (l1, l2) {
   let carry = 0;
   let dummy = new ListNode(0);
   const head = dummy;
-  //EC: For Carry: when the sum of both list is longer than length of either list
+  //EC: For Carry: when the sum is longer than length of either list
   while (l1 !== null || l2 !== null || carry !== 0) {
     let val1 = 0;
     let val2 = 0;
