@@ -36,3 +36,19 @@ var isValidBST = function (root) {
 
   return dfs(root);
 };
+
+//Iterative DFS
+var isValidBST = function (root) {
+  const stack = [[-Infinity, Infinity, root]];
+
+  while (stack.length) {
+    const [min, max, node] = stack.pop();
+    if (!node) continue;
+
+    if (node.val <= min || node.val >= max) return false;
+
+    stack.push([node.val, max, node.right], [min, node.val, node.left]);
+  }
+
+  return true;
+};
