@@ -25,7 +25,7 @@ Approach
 
 var addTwoNumbers = function (l1, l2) {
   let carry = 0;
-  let dummy = new ListNode();
+  let dummy = new ListNode(0);
   const head = dummy;
   //EC: For Carry: when the sum of both list is longer than length of either list
   while (l1 !== null || l2 !== null || carry !== 0) {
@@ -71,13 +71,11 @@ return head.next;
         DN
         D
 
-    C = 0
     [0, 7, 0]
            C
            DN
            D
 
-    C = 8
     [0, 7, 0, 8]
               C
               DN
