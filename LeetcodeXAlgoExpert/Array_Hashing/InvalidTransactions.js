@@ -37,7 +37,7 @@ var invalidTransactions = function (transactions) {
   const map = {};
 
   for (const trans of transactions) {
-    const [name, time, amount, city] = trans.split(",");
+    const [name, time, city] = trans.split(",");
 
     if (name in map) {
       //alice: [ { time: '20', city: 'mtv' }, { time: '50', city: 'beijing' } ]
