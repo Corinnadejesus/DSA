@@ -17,7 +17,7 @@ Time: O(n) | Space: O(h)
 
 Recursive DFS Approach
     - We need to compare the left and right subtrees, but also compare the root to something
-    - Initally compare the root to (-Infinity for left, Infinity for right)
+    - Initially compare the root to (-Infinity for left, Infinity for right)
     - Create our dfs helper function
         - BC: if root is null return true (empty trees are valid BST)
         - BC: if root >= min || root <= max return false
@@ -36,6 +36,8 @@ var isValidBST = function (root) {
 
   return dfs(root, -Infinity, Infinity);
 };
+
+/////////////////////////****************** ALTERNATIVE ******************///////////////////////
 
 //Iterative DFS
 var isValidBST = function (root) {
