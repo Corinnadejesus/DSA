@@ -14,85 +14,71 @@ Approach
 
 //Map and Doubly Linked List
 class LRUCache {
-  constructor(capacity) {
+  constructor(maxSize) {
+    this.maxSize = maxSize || 1;
+    this.currSize = 0;
     this.cache = {};
-    this.linkedList = new DoublyLinkedList();
-    this.capacity = capacity;
-    this.size = 0;
+    this.list = new DoublyLinkedList();
   }
 
+  // EVERY TIME A KEY IS ACCESSED OR UPDATED, IT SHOULD BE MOVED TO THE FRONT OF THE LL **
   get(key) {
-    //if key doesn't exist, return -1
-    if (!this.cache[key]) return -1;
-
-    //if key exists, look up to node in the cache, move it to the front of the LL and return its value
-    let node = this.cache[key];
-    this.linkedList.moveNodeFront(node);
-    return node.value;
+    if (!(key in this.cache)) return -1;
+    this.list.removeNode(this.cache[key]);
+    this.list.setHead(this.cache[key]); //**
+    return this.cache[key].value;
   }
 
   put(key, value) {
-    //if key exist, look up the node in the cache, update its value, and move to the front of the LL
-    if (this.cache[key]) {
-      let node = this.cache[key];
+    if (!(key in this.cache)) {
+      //If within capacity, set the new pair in the cache AND in LL, increment size
+      const node = new Node(key, value);
+      this.cache[key] = node;
+      this.list.setHead(node); //**
+
+      if (this.maxSize === this.currSize) {
+        //If not within capacity, delete from LL and Cache
+        const nodeToRemove = this.list.tail.prev;
+        this.list.removeNode(nodeToRemove);
+        delete this.cache[nodeToRemove.key];
+      } else {
+        this.currSize++;
+      }
+    } else {
+      //Key exist in cache, update the value
+      const node = this.cache[key];
       node.value = value;
-      this.linkedList.moveNodeFront(node);
-      return;
+      this.list.removeNode(node);
+      this.list.setHead(node); //**
     }
-    //if it does not exist,
-    //if at capacity, remove LRU last node from LL and cache, decrement the size by 1
-    if (this.size === this.capacity) {
-      const lastNode = this.linkedList.removeAndReturnLast();
-      delete this.cache[lastNode.key];
-      this.size -= 1;
-    }
-
-    //if below capacity, add to cache and LL, increment size
-    const newNode = new ListNode(key, value);
-    this.linkedList.add(newNode);
-    this.cache[key] = newNode;
-    this.size += 1;
-  }
-}
-
-class Node {
-  constructor(key, val) {
-    this.key = key;
-    this.val = val;
-    this.next = null;
-    this.prev = null;
   }
 }
 
 class DoublyLinkedList {
   constructor() {
-    this.head = new ListNode();
-    this.tail = new ListNode();
-    this.connect(this.head, this.tail);
+    this.head = new Node(0, 0);
+    this.tail = new Node(0, 0);
+    this.head.next = this.tail;
+    this.tail.prev = this.head;
   }
-  add(node) {
-    //create connection between head and the node you want to add
-    this.connect(node, this.head.next);
-    this.connect(this.head, node);
+  setHead(node) {
+    node.next = this.head.next;
+    node.prev = this.head;
+    this.head.next.prev = node;
+    this.head.next = node;
   }
-  moveNodeFront(node) {
-    this.deleteNodes(node);
-    this.add(node);
+  removeNode(node) {
+    node.next.prev = node.prev;
+    node.prev.next = node.next;
   }
-  removeAndReturnLast() {
-    //ensure to return node that is deleted
-    const lastNode = this.tail.prev;
-    this.deleteNodes(lastNode);
-    return lastNode;
-  }
-  connect(node1, node2) {
-    //creates the double link between nodes
-    node1.next = node2;
-    node2.prev = node1;
-  }
-  deleteNodes(node) {
-    //deletes by removing pointer at current node
-    this.connect(node.prev, node.next);
+}
+
+class Node {
+  constructor(key, value) {
+    this.value = value;
+    this.key = key;
+    this.next = null;
+    this.prev = null;
   }
 }
 
