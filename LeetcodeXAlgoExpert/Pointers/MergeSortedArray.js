@@ -8,14 +8,14 @@ Output: [1,2,2,3,5,6]
 Three Pointer Walk-Through
         [1,2,3,0,0,0]   [2,5,6]
              F     i         S
-    At every iteration check if (F is not > S) then take value at S and set it as the value at i, decrement S and i
+    If (F < S) then take value at S and set it as the value at i, decrement S and i
 
         [1,2,3,0,0,6]   [2,5,6]
              F     i       S
 
         [1,2,3,0,5,6]   [2,5,6]
-             F   i       S
-    In this case, (F > S) so take the value at F and set it as the value at i, decrement F and i
+             F i         S
+    In this case, (F > S) so take the value at F (3) and set it as the value at i, decrement F and i
 
         [1,2,3,3,5,6]   [2,5,6]
            F i           S
@@ -38,16 +38,16 @@ var merge = function (nums1, m, nums2, n) {
     let firstVal = nums1[firstPointer];
     let secondVal = nums2[secondPointer];
 
-    if (firstVal > secondVal) {
-      //update the value of the ithPointer to be the larger value
-      nums1[ithPointer] = firstVal;
-      ithPointer--;
-      firstPointer--;
-    } else {
+    if (firstVal < secondVal) {
       //update the value of the ith pointer to be the smaller value
       nums1[ithPointer] = secondVal;
       secondPointer--;
       ithPointer--;
+    } else {
+      //update the value of the ithPointer to be the larger value
+      nums1[ithPointer] = firstVal;
+      ithPointer--;
+      firstPointer--;
     }
   }
 };
