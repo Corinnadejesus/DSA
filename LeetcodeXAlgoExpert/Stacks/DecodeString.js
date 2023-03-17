@@ -13,17 +13,6 @@ Output: "abcabccdcdcdef"
 Time: O(n) | Space: O(n)
 
 Approach
-  - Iterate over s
-    - For ]
-      - Populate Stack with Letters and Numbers before open bracket
-      - Pop off open bracket
-      - Get the number in the stack
-      - Build our decoded string by repeating k times
-      - Iterate over decoded string pushing it back into stack
-    - Otherwise push all other chars into stack
-  - Return stack joined into a string
-
-KEY:
   - POPULATE STACK, REMOVE UNWANTED BRACKETS
   - GET K NUMBER FROM STACK
   - BUILD DECODED STRING WITH K REPEATED
