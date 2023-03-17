@@ -39,12 +39,12 @@ var merge = function (nums1, m, nums2, n) {
     let secondVal = nums2[secondPointer];
 
     if (firstVal < secondVal) {
-      //update the value of the ith pointer to be the smaller value
+      //update the value of the ith pointer to be the second value
       nums1[ithPointer] = secondVal;
       secondPointer--;
       ithPointer--;
     } else {
-      //update the value of the ithPointer to be the larger value
+      //update the value of the ithPointer to be the first value
       nums1[ithPointer] = firstVal;
       ithPointer--;
       firstPointer--;
