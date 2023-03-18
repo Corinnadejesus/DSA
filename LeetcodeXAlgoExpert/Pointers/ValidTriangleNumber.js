@@ -1,9 +1,6 @@
 /*
 Given an integer array nums, return the number of triplets chosen from the array that can make triangles if we take them as side lengths of a triangle.
 
-
-Example 1:
-
 Input: nums = [2,2,3,4]
 Output: 3
 Explanation: Valid combinations are:
@@ -11,15 +8,24 @@ Explanation: Valid combinations are:
 2,3,4 (using the second 2)
 2,2,3
 
-Example 2:
-
 Input: nums = [4,2,3,4]
 Output: 4
 
 If a triangle of side lengths a, b and c is said to be valid if, a+b > c, b+c > a and a+c > b.
+
+Time: O(n * log(n)) | Space: O(1
+
+Approach
+  - If nums is empty return result, Sort nums, set 3 pointers
+  - Start k as value before last element (happens to be 3 because i and j also need placement)
+  - i set to first element, j set to element right before k (**indices get re-calculated at every iteration**)
+  - loop as long as the indices of i is less than j
+    - if values of the num at i and j, are less than value of num at k
+      - subtract the index values of i and j and to result, decrement j
+    - otherwise increment i
 */
 
-// Time: O(n * log(n)) | Space: O(1)
+// )
 var triangleNumber = function (nums) {
   let result = 0;
   if (!nums || !nums.length) {
@@ -29,22 +35,6 @@ var triangleNumber = function (nums) {
   nums.sort((a, b) => a - b);
 
   let i, j, k;
-  /*
-           k
-     i
-        j
-    [2, 2, 3, 4]
-     0  1  2  3
-
-    i
-              j
-                 k
-    [2, 2, 3, 4, 5]
-    2,4,5
-    2,4,5
-    3,4,5
-
-*/
   for (k = nums.length - 1; k > 1; k--) {
     i = 0;
     j = k - 1;
