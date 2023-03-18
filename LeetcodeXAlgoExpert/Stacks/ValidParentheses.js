@@ -5,7 +5,6 @@
 // Open brackets must be closed in the correct order.
 // Every close bracket has a corresponding open bracket of the same type.
 
-
 // Example 1:
 // Input: s = "()"
 // Output: true
@@ -19,31 +18,28 @@
 // Output: false
 
 //Time | Space: O(n)
+/*
+Approach
+Stack keeps track of opening brackets
+Loop through s
+    - If closing bracket KEY exist in map
+        - If stack is not empty pop top element from stack
+        - If opening bracket VALUE map is not same as top of stack => false
+    - Else add char to stack
+*/
 
-var isValid = function(s) {
-    //Approach: hashMap and Stack
+var isValid = function (s) {
+  let stack = [];
+  const map = { ")": "(", "}": "{", "]": "[" };
 
-    //Init stack: it helps to check valid pairs
-    const stack = []
-
-    //Set up hashMap with all valid parentheses pairs set
-    const hashMap = {'(': ')', '{': '}', '[': ']'}
-
-    //iterate over string
-    for(const ele of s) {
-        //if element is closing bracket and in the hashmap
-        if(hashMap[ele]) {
-            //push it into the stack
-            stack.push(hashMap[ele])
-        //if element is opening bracket and last item in stack is equal to the element
-        } else if (stack[stack.length - 1] === ele) {
-            //pop it out of the stack
-            stack.pop()
-        } else {
-            //element is closing bracket and not in the stack
-            return false
-        }
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    if (char in map) {
+      let topElement = stack.pop();
+      if (mapping[char] !== topElement) return false;
+    } else {
+      stack.push(char);
     }
-    //return boolean checking if the stack is empty, if it is ALL pairs were found
-    return stack.length === 0
+  }
+  return stack.length === 0;
 };
