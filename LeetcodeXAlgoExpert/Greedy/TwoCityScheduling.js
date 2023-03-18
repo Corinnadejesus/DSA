@@ -12,16 +12,19 @@ Approach
 */
 
 var twoCitySchedCost = function (costs) {
-  //[ [ 400, 50 ], [ 30, 20 ], [ 10, 20 ], [ 30, 200 ] ]
-  costs.sort((a, b) => a[1] - a[0] - (b[1] - b[0]));
+                 //CityB                 //CityA
+    //[ [ 400, 50 ], [ 30, 20 ], [ 10, 20 ], [ 30, 200 ] ]
+    costs.sort((a, b) => a[1] - a[0] - (b[1] - b[0]));
 
-  let totalCost = 0;
-  let n = costs.length / 2;
+    let totalCost = 0;
+    let N = costs.length / 2;
+    for (let i = 0; i < N; i++) {
+        //Get the first values (lowest), assign to CityA
+        const cityA = costs[i + N][0] //10, 30
 
-  for (let i = 0; i < n; i++) {
-    const cityA = costs[i + n][0]; //10, 30
-    const cityB = costs[i][1]; //50, 20
-    totalCost += cityA + cityB;
-  }
-  return totalCost;
+        //Get the second values (greatest), assign to CityB
+        const cityB = costs[i][1] //50, 20
+        totalCost += cityA + cityB;
+    }
+    return totalCost;
 };
