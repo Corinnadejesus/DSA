@@ -15,32 +15,28 @@ Input: prices = [7,6,4,3,1] //EACH BUY PRICE IS GREATER THAN THE SELL PRICE
 Output: 0
 Explanation: In this case, no transactions are done and the max profit = 0.
 
-Time | Space : O(n)
+Time: O(n) | Space: O(1)
 */
 
 //As you go through the prices, at every iteration you should be asking: is this current price less than the minimum buying price. If it is not, we sell at current price to make a profit.
 
 function buySellStock(prices) {
-  //set default as the highest price because first price will always be lower than infinity
-  let minBuyPrice = Infinity
-  //0 = no transactions yet
-  let maxProfit = 0
+  let minPrice = Infinity;
+  let maxProfit = 0;
 
-  for(let price of prices) {
-      if(price < minBuyPrice) {
-          //replace min buy price with current stock
-          minBuyPrice = price
+  for (const price of prices) {
 
-      }
+    //if current price is less than min price (which always will be because its infinity)
+    if (price < minPrice) {
 
-      //difference in profit
-      const diffInProfit = price - minBuyPrice
-
-      //Ex. $5 - $1 > 0
-      if (diffInProfit > maxProfit) {
-          //update profit with the difference
-          maxProfit = diffInProfit
-      }
+      //SET current price as new minimum price
+      minPrice = price;
+    } else {
+      //get diff by calculating current buy price from the smallest buy price so far
+      let diffInProfit = price - minPrice;
+      
+      maxProfit = Math.max(maxProfit, diffInProfit);
+    }
   }
   return maxProfit;
 }
