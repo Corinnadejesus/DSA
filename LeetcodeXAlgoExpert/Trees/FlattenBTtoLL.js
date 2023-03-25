@@ -27,7 +27,7 @@ var flatten = function (root) {
     var last = root.left;
     while (last.right !== null) last = last.right;
     var tmp = root.right;
-    root.right = root.left;
+    root.right = root.left; 
     last.right = tmp;
     root.left = null;
   }
