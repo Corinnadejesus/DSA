@@ -13,13 +13,13 @@ Neighbors: [[1,2],[3],[3],[]]
 Start: 0 => Goal: 3
 
 Approach
-  - Add 0 to call stack and currArr, check graph to see neighbors of 0 (1,2) => res [[0]]
-  - Traverse to 1, add to call stack and currArr, check neighbors of 1 (3) => res [[0,1]]
-  - Add 3 to call stack and currArr => res [[0,1,3]]
+  - Add (0) to call stack and currArr, check graph to see neighbors of 0 (1,2) => res [[0]]
+  - Traverse to (1), add to call stack and currArr, check neighbors of 1 (3) => res [[0,1]]
+  - Add (3) to call stack and currArr => res [[0,1,3]]
   - If currNode is the last node in graph we found all possible solutions, add them to currArr
-  - Otherwise backtrack to last node (1) by popping (3) from call stack, pop 1 off to get to 0
-  - Add 0 to currArr, check unvisited neighbors (2) then add call stack and currArr => res [[0,1,3], [0,2]]
-  - Check neighbors of 2 in graph, add to currArr => res [[0,1,3], [0,2,3]]
+  - Otherwise backtrack to last node (1) by popping (3) from call stack, then pop (1) off to get to (0)
+  - Add (0) to currArr, check unvisited neighbors (2) then add call stack and currArr => res [[0,1,3], [0,2]]
+  - Check neighbors of (2) in graph, add to currArr => res [[0,1,3], [0,2,3]]
 */
 
 var allPathsSourceTarget = function (graph) {
