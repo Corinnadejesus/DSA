@@ -29,7 +29,10 @@ var setZeroes = function (matrix) {
   }
 };
 
-//Memory Optimized
+
+//******************************* ALTERNATIVE *************************************//
+
+// OPTIMIZED MEMORY
 // Time: O(m * n) | Space: O(1)
 var setZeroes = function (matrix) {
   let isFirstRowZero = false;
