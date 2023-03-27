@@ -24,6 +24,7 @@ Approach
 
 var allPathsSourceTarget = function (graph) {
   let results = [];
+
   function backtrack(currNode, currArr) {
     currArr.push(currNode);
     if (currNode === graph.length - 1) {
