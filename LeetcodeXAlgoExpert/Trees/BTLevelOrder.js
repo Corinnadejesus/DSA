@@ -12,10 +12,10 @@ Approach
     - Initializing length variable and set it as queue’s length
     - Push all values in queue into the result as an array
     - While the length variable exist
-    - Shift current node from queue
-    - If the node.left is not null push left values into queue
-    - If the node.right is not null push right values into queue
-    - Decrement length
+      - Shift current node from queue
+      - If the node.left is not null push left values into queue
+      - If the node.right is not null push right values into queue
+      - Decrement length
 - Return result
 */
 
