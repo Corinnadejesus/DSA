@@ -25,18 +25,18 @@ Approach
 var allPathsSourceTarget = function (graph) {
   let results = [];
 
-  function backtrack(currNode, currArr) {
-    currArr.push(currNode);
-    if (currNode === graph.length - 1) {
-      results.push([...currArr]);
+  function backtrack(node, arr) {
+    arr.push(node);
+    if (node === graph.length - 1) {
+      results.push([...arr]);
     }
 
-    let neighbors = graph[currNode];
+    let neighbors = graph[node];
     for (neigh of neighbors) {
-      backtrack(neigh, currArr);
+      backtrack(neigh, arr);
     }
 
-    currArr.pop();
+    arr.pop();
   }
 
   backtrack(0, []);
