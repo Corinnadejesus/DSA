@@ -12,9 +12,9 @@ Explanation: Given the above perfect binary tree (Figure A), your function shoul
 var connectBFS = function (root) {
   if (root == null) return root;
   let queue = [root];
-  while (queue.length !== 0) {
+  while (queue.length) {
     let next = [];
-    while (queue.length !== 0) {
+    while (queue.length) {
       let node = queue.shift();
       node.next = queue[0] || null;
       if (node.left !== null) {
