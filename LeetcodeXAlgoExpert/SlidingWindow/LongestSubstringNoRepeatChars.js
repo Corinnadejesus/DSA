@@ -13,6 +13,7 @@ Explanation: The answer is "b", with the length of 1.
 
 Example 3:
 Input: s = "pwwkew"
+            L R
 Output: 3
 Explanation: The answer is "wke", with the length of 3.
 Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
@@ -22,7 +23,7 @@ Time: O(n) | Space: O(1)
 Approach
   - Set left and right pointers
   - Starting from right side over string
-    - Populate our map with non-repeating chars
+    - Populate our set with non-repeating chars
     - Check for repeating chars, if so delete them and move left forward
   - Updating the maximum substring length at every iteration
 */
