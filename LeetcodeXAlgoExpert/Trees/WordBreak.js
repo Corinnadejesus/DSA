@@ -45,20 +45,3 @@ var wordBreak = function (s, wordDict) {
 
   return false;
 };
-
-
-/////////////////*************** ALTERNATIVE **************////////////////
-
-//Memoization (same complexity)
-var wordBreak = function(s, wordDict, memo={}) {
-    if(!s.length) return true;
-
-    if(s in memo) return memo[s];
-
-    for(let word of wordDict){
-        if(s.startsWith(word)){
-            if(wordBreak(s.slice(word.length), wordDict, memo)) return true;
-        }
-    }
-    return memo[s] =false;
-};
