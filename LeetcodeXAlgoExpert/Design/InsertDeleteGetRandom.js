@@ -29,6 +29,7 @@ RandomizedSet.prototype.remove = function (val) {
   if (!this.map.has(val)) return false;
   const idx = this.map.get(val);
 
+  //swaps the val we need to remove to the end
   this.swap(idx, this.list.length - 1);
   this.list.pop();
 
