@@ -7,35 +7,30 @@ Output: [[1,6],[8,10],[15,18]]
 Explanation: Since intervals [1,3] and [2,6] overlap, merge them into [1,6].
 
 Time: O(n) | Space: O(1)
-*/
 
-var merge = function (intervals) {
-  //sort the input array by 0th index to make checking pair easier
-  intervals.sort((a, b) => a[0] - b[0]);
-
-  //set results array, add first interval to it
-  const results = [intervals[0]];
-
-  //loop over intervals
-  for (const interval of intervals) {
-    //set end1 as the last element in the results array at index 1
-    let end1 = results[results.length - 1][1]; //30
-
-    //set start2 as first value in interval
-    let start2 = interval[0];
-
-    //set end2 as second value in interval
-    let end2 = interval[1];
-
-    /*
+Approach
          S    E
         [0,  30]
         [5,  10]
         [15, 20]
-    */
+  - sort the input array by 0th index
+  - set results array, add first interval to it
+  - end1: as the last element in the results array at index 1
+  - end2: as second value in interval
+  - start2: as first value in interval
+  - set last ele in result as max between the last element in the results array and the second value in the interval
+*/
+
+var merge = function (intervals) {
+  intervals.sort((a, b) => a[0] - b[0]);
+  const results = [intervals[0]];
+
+  for (const interval of intervals) {
+    let end1 = results[results.length - 1][1]; //30
+    let end2 = interval[1]; //10
+    let start2 = interval[0]; //0
+
     if (end1 >= start2) {
-      //set the last value of the result array at index 1
-      //to the max value between the last element in the results array and the second value in the interval
       results[results.length - 1][1] = Math.max(end1, end2);
     } else {
       results.push(interval);
