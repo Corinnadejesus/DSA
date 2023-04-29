@@ -31,17 +31,6 @@ var firstUniqChar = function (s) {
 
 //Optimizing Space Complexity
 //Time: O(n) | Space: 0(1)
-/*
-firstIndex      lastIndex
-0               0
-1               7
-1               7
-3               3
-4               4
-5               5
-6               6
-1               7
-*/
 var firstUniqChar = function (s) {
   for (i = 0; i < s.length; i++)
     //the index will be at the same number if the values only occur once
