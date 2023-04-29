@@ -10,7 +10,7 @@ Output: 2
 */
 
 var firstUniqChar = function (s) {
-  //Time: O(n) | Space: O(n)
+  //Time: O(n) | Space: O(1) -> Because there are only 26 letters the s could be
 
   let freqMap = {};
 
@@ -29,7 +29,10 @@ var firstUniqChar = function (s) {
   return -1;
 };
 
-//Optimizing Space Complexity
+//////////////////**************** ALTERNATIVE **************////////////////////
+
+
+
 //Time: O(n) | Space: 0(1)
 var firstUniqChar = function (s) {
   for (i = 0; i < s.length; i++)
