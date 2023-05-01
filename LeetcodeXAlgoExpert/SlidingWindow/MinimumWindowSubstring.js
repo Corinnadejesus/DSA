@@ -7,7 +7,7 @@ Input: s = "ADOBECODEBANC", t = "ABC"
 Output: "BANC"
 Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
 
-Time: O(n + m) | Space: O(n)
+Time: O(n) | Space: O(26) -> O(1)
 */
 
 function minWindow(s, t) {
@@ -28,7 +28,7 @@ function minWindow(s, t) {
     }
   }
 
-  /* STEP 2: THE GOAL HERE IS TO FIND EACH LETTER IN S WITH A FREQ IN OUR MAP, AS WE FIND THESE VALUES WE DECREASE THE FREQ COUNT TO GET IT TO 0 SO WE KNOW WE HAVE A VALID SUBSTRING */
+  /* STEP 2: THE GOAL HERE IS TO FIND EACH LETTER IN S WITH A FREQ IN OUR MAP, AS WE FIND THESE VALUES WE DECREASE THE FREQ COUNT TO GET IT TO 0 AND DECREMENT COUNT FOR EACH UNIQUE CHAR SO WE KNOW WE HAVE A VALID SUBSTRING */
   while (right < s.length) {
     //extract letter at right pointer
     let rLetter = s[right];
@@ -64,38 +64,9 @@ function minWindow(s, t) {
   return minWindow;
 }
 
-//Steps
-//set left, right pointers
-//set len as our substring length
-//set count that will keep track of the size of the map
-//set map to set frequencies of t letters
-// set minWindow to hold our result string
-
-//iterate over t
-//if map doesnt have t, set letters and their freq
-
-//iterate through s, starting at the right pointer
-//if letter at right pointer is a key in the map decrement the freq of that letter in the map
-//CHECK IF FREQ COUNT IS ZER0
-//decrement the count
-//increment the right to check next letter
-
-//iterate as long as count is 0
-//if the difference in our right and left pointer values is less than the len of our previous substring
-//update the length of the previous substring
-//update the minWindow by slicing the indices of the left and right pointers
-
-//if letter at left pointer is a key in the map
-//increment the freq of that letter in the map
-//CHECK IF FREQ COUNT IS GREATER THAN ZER0
-//increment the count
-//increment the left to check next letter
-
-//return minWindow
-
 //*************** ALTERNATIVE ******************//
 
-//Time: O(n + m) | Space: O(n)
+//Time: O(n) | Space: O(26) -> O(1)
 var minWindow = function (s, t) {
   if (t.length > s.length) return "";
 
@@ -121,9 +92,6 @@ var minWindow = function (s, t) {
       }
 
       const leftChar = s[left];
-      // If the leftChar in charMap is at exactly 0 before being
-      // incremented, we now need more leftChars so that its count
-      // in charMap goes down to exactly 0
       if (neededChars[leftChar] === 0) {
         neededLength++;
       }
