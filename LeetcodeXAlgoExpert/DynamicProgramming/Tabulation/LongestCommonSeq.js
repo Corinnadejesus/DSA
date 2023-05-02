@@ -15,61 +15,55 @@ Output: 0
 Explanation: There is no such common subsequence, so the result is 0.
 */
 
-// Tabulation Solution
-// T: O(n^2) | S: O(n)
-function longestCommonSeq(text1, text2) {
-  //create table X: text1, Y: text2
-  const table = Array.from({ length: text1.length + 1 }, () =>
-    new Array(text2.length + 1).fill("")
-  );
+//Tabulation (Optimal because table created, no recursive call stack used or extra memory allocated to)
+//Time: O(m * n) | Space: O(m * n)
+function longestCommonSubsequence(text1, text2) {
+  const m = text1.length;
+  const n = text2.length;
+  const dp = new Array(m + 1).fill(null).map(() => new Array(n + 1).fill(0));
 
-  //iterate over rows
-  for (let row = 1; row < table.length; row++) {
-    //iterate over columns
-    for (let col = 1; col < table[row].length; col++) {
-      //if x, y of table are same letters
-      //because were setting length 1 more than input text have to have i - 1
-      if (text1[row - 1] === text2[col - 1]) {
-        //then take whats diagonal and set the value to it
-        table[row][col] = table[row - 1][col - 1] + text1[row - 1];
+  for (let i = 1; i <= m; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (text1[i - 1] === text2[j - 1]) {
+        dp[i][j] = 1 + dp[i - 1][j - 1];
       } else {
-        //get the max length of what is above and to the left of cell
-        let aboveChar = table[row - 1][col];
-        let leftChar = table[row][col - 1];
-
-        //set the table to the max length
-        table[row][col] =
-          aboveChar.length > leftChar.length ? aboveChar : leftChar;
+        dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
       }
     }
   }
-  return table[table.length - 1][table[0].length - 1].length;
+
+  return dp[m][n];
 }
 
-////////******OPTIMIZED SOLUTION*******//////////
-//QUESTION: HOW IS THIS OPTIMIZED WHEN ITS USING 3 LOOPS??
+//////////////*************** ALTERNATIVE ****************//////////////////
 
-function longestCommonSubsequence(text1, text2) {
-  const shorter = text1.length >= text2.length ? text2 : text1;
-  const longer = text1.length >= text2.length ? text1 : text2;
+// Memoization
+//Time: O(m * n) | Space: O(m * n)
+function longestCommonSeq(text1, text2) {
+  const memo = new Map();
 
-  const dp = [];
-
-  for (let i = 0; i <= longer.length; i++) {
-    dp[i] = new Array(shorter.length + 1).fill(0);
-  }
-
-  dp[0] = new Array(shorter.length + 1).fill(0);
-  dp.forEach((a) => {
-    a[0] = 0;
-  });
-
-  for (let i = 1; i < longer.length + 1; i++) {
-    for (let j = 1; j < shorter.length + 1; j++) {
-      const count = shorter[j - 1] === longer[i - 1] ? 1 : 0;
-      dp[i][j] = Math.max(count + dp[i - 1][j - 1], dp[i - 1][j], dp[i][j - 1]);
+  function lcsHelper(i, j) {
+    if (i === text1.length || j === text2.length) {
+      return 0;
     }
+
+    const memoKey = `${i}-${j}`;
+    if (memo.has(memoKey)) {
+      return memo.get(memoKey);
+    }
+
+    let result;
+    if (text1[i] === text2[j]) {
+      result = 1 + lcsHelper(i + 1, j + 1);
+    } else {
+      const left = lcsHelper(i + 1, j);
+      const right = lcsHelper(i, j + 1);
+      result = Math.max(left, right);
+    }
+
+    memo.set(memoKey, result);
+    return result;
   }
 
-  return dp[longer.length][shorter.length];
+  return lcsHelper(0, 0);
 }
