@@ -12,7 +12,7 @@ Output: 3
 Explanation: F(4) = F(3) + F(2) = 2 + 1 = 3.
 */
 /* RECURSION
-Time: O(2^n) -> the same values are repeatedly calculated | Space: O(1) */
+Time: O(2^n) -> every recursive call leads to two additional calls | Space: O(1) */
 var fib = function (n) {
   if (n <= 1) return n;
   return fib(n - 1) + fib(n - 2);
