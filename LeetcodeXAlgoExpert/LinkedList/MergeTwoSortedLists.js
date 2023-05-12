@@ -13,45 +13,40 @@ Time: O(n + m) where list1 (n) and list2 (m)
 Space: O(1) because of simple pointers shift, not creating anything that will scale as input gets larger
 */
 
-var mergeTwoLists = function(list1, list2) {
-    let dummy = new ListNode(-Infinity)
-    //we want a reference to dummy in prev because it is going to be returned at the end
-    let prev = dummy
-    while(list1 && list2) {
-        //checking for smallest values to start the merge
-        if(list1.val <= list2.val) {
-            //merge list1 values if smaller
-            prev.next = list1 //set second value of list1
-            prev = list1 //set first value of list1
-            list1 = list1.next //increments to get to the next value
-        } else {
-            //otherwise merge list2 values
-            prev.next = list2
-            prev = list2
-            list2 = list2.next
-        }
+var mergeTwoLists = function (l1, l2) {
+  let temp = new ListNode(null);
+  let curr = temp;
+  while (l1 && l2) {
+    if (l1.val <= l2.val) {
+      curr.next = l1; //set second val to l1
+      l1 = l1.next; //increment to the next value
+    } else {
+      curr.next = l2;
+      l2 = l2.next;
     }
+    curr = curr.next;
+  }
 
-    //in the case of difference lengths of list1 or list2
-    if(list1 === null) prev.next = list2
-    if(list2 === null) prev.next = list1
+  if (l1) {
+    curr.next = l1;
+  } else {
+    curr.next = l2;
+  }
 
-    return dummy.next
+  return temp.next;
 };
 
 //******************* ALTERNATE (RECURSION) *************************//
 
-var mergeTwoLists = function(list1, list2) {
-    //Time: O(n + m)
-    //Space: O(n + m)
-    if(!list1) return list2;
-    if(!list2) return list1;
-    if(list1.val <= list2.val){
-        list1.next = mergeTwoLists(list1.next, list2)
-        return list1;
-    }
-    list2.next = mergeTwoLists(list1, list2.next)
-    return list2;
-
-
+var mergeTwoLists = function (list1, list2) {
+  //Time: O(n + m)
+  //Space: O(n + m)
+  if (!list1) return list2;
+  if (!list2) return list1;
+  if (list1.val <= list2.val) {
+    list1.next = mergeTwoLists(list1.next, list2);
+    return list1;
+  }
+  list2.next = mergeTwoLists(list1, list2.next);
+  return list2;
 };
