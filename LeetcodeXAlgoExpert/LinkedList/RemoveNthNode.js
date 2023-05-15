@@ -7,9 +7,16 @@ Output: [1,2,3,5]
 Time: O(n) | Space: O(1)
 
 Approach
-*/
-/*
-  c         n
+  - Init pointers (Dummy, Prev, RemoveNode, Tail)
+  - Loop from counter to n (to get Tail to point one position before n)
+  - Loop from Tail to null
+    - Advance tail, prev, and removedNode
+    - Once tail reaches null, removedNode will point to node to be removed
+  - Break the link and point 3 to 5
+
+  
+  VISUAL WALKTHROUGH
+            n
  [0,1, 2, 3,4,5] (Tail starts at head, and it is incremented n times. RN at 1, T at 3, P at 0)
   D T  T  T
   P RN
@@ -25,6 +32,7 @@ Approach
  [0,1, 2, 3, 4, 5, null] (When Tail get to end of list, RN is pointing to the nth node at the end of the list to remove)
   D                T
           P RN
+
 */
 
 var removeNthFromEnd = function (head, n) {
@@ -32,7 +40,8 @@ var removeNthFromEnd = function (head, n) {
 
   //append dummy to linked list
   dummy.next = head;
-
+  let removedNode = head;
+  let prev = dummy;
   let tail = head;
   let count = 0;
 
@@ -41,9 +50,6 @@ var removeNthFromEnd = function (head, n) {
     count++;
     tail = tail.next;
   }
-
-  let removedNode = head;
-  let prev = dummy;
 
   //increment tail to the end of the list
   while (tail) {
