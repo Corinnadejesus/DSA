@@ -30,16 +30,23 @@ Loop through s
 
 var isValid = function (s) {
   let stack = [];
-  const map = { ")": "(", "}": "{", "]": "[" };
+  let map = {
+    ")": "(",
+    "}": "{",
+    "]": "[",
+  };
 
   for (let i = 0; i < s.length; i++) {
     let char = s[i];
-    if (char in map) {
-      let topElement = stack.pop();
-      if (mapping[char] !== topElement) return false;
+    if (char in map) { //key
+      let item = stack.pop();
+      if (item !== map[char]) { //value
+        return false;
+      }
     } else {
       stack.push(char);
     }
   }
+
   return stack.length === 0;
 };
