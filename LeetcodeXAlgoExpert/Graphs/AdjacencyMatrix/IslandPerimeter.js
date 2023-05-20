@@ -19,9 +19,7 @@ Approach
 Create our perimeter
 Iterate through grid (rows and cols)
     - If the cell is a 1 (land) -> Add 4 to perimeter
-        - If cell has a neighboring land cell, remove 2 sides (one from each land cell) which will be touching between these two cells.
-        - If current land cell has a UP land cell -> subtract 2 from your accumulated perimeter.
-        - If current land cell has a LEFT land cell -> subtract 2 from your accumulated perimeter.
+    - If cell has a left or up neighbor, remove 2 sides (one from each land cell) which will be touching between these two cells.
 */
 
 var islandPerimeter = function (grid) {
@@ -31,11 +29,11 @@ var islandPerimeter = function (grid) {
       if (grid[row][col] === 1) {
         perimeter += 4;
 
-        if (row > 0 && grid[row - 1][col] === 1) {
+        if (row > 0 && grid[row - 1][col] === 1) { //LEFT
           perimeter -= 2;
         }
 
-        if (col > 0 && grid[row][col - 1] === 1) {
+        if (col > 0 && grid[row][col - 1] === 1) { //UP
           perimeter -= 2;
         }
       }
