@@ -15,29 +15,29 @@ The substring "BBBB" has the longest repeating letters, which is 4.
 */
 
 function characterReplacement(str, k) {
-    let start = 0;
-    let map = {};
-    let maxFrequency = 0;
-    let maxSubstringLength = 0;
-    for (let end = 0; end < str.length; end += 1) {
-        map[str[end]] = (map[str[end]] || 0) + 1
+  let start = 0;
+  let map = {};
+  let maxFrequency = 0;
+  let maxSubstringLength = 0;
+  for (let end = 0; end < str.length; end++) {
+    map[str[end]] = (map[str[end]] || 0) + 1;
 
-        // the maximum frequency we have seen in any window yet
-        maxFrequency = Math.max(maxFrequency, map[str[end]]);
+    // the maximum frequency we have seen in any window yet
+    maxFrequency = Math.max(maxFrequency, map[str[end]]);
 
-        // move the start pointer towards right if the current
-        // window is invalid
-        const validWindow = (end + 1 - start - maxFrequency <= k);
-        if (!validWindow) {
-            map[str[start]]--;
-            start++;
-        }
-
-        // the window is valid at this point, store length
-        // the size of the window never decreases
-        maxSubstringLength = end + 1 - start;
+    // move the start pointer towards right if the current
+    // window is invalid
+    const validWindow = end + 1 - start - maxFrequency <= k;
+    if (!validWindow) {
+      map[str[start]]--;
+      start++;
     }
-    return maxSubstringLength;
+
+    // the window is valid at this point, store length
+    // the size of the window never decreases
+    maxSubstringLength = end + 1 - start;
+  }
+  return maxSubstringLength;
 }
 
 /*
@@ -45,32 +45,15 @@ function characterReplacement(str, k) {
     (if S - E <= K) increment maxFrequency, and window and continue
 
     [A, A, B, A, B, B, A] k = 2
-     S  E (0 - 0 <= 2) maxFrequency: {'a': 2, 'b': 0}
+     S     E (0 - 2 <= 2) TRUE (first three iterations are true), maxFrequency: {'a': 2, 'b': 1}
 
     [A, A, B, A, B, B, A] k = 2
-     S     E (0 - 2 <= 2) maxFrequency: {'a': 2, 'b': 1}
+     S           E (5 - 2 <= 2) FALSE, DECREMENT FREQ OF START AND MOVE START POINTER FORWARD
+                             maxFrequency: {'a': 2, 'b': 2}
 
     [A, A, B, A, B, B, A] k = 2
-     S        E (0 - 3 <= 2) FALSE, MOVE START POINTER FORWARD
-    maxFrequency: {'a': 3, 'b': 1}
+        S           E (6 - 1 - 2 <= 2) FALSE maxFrequency: {'a': 1, 'b': 3}
 
     [A, A, B, A, B, B, A] k = 2
-        S     E (1 - 4 <= 2) FALSE, MOVE START POINTER FORWARD
-
-    [A, A, B, A, B, B, A] k = 2
-           S  E (2 - 3 <= 2) TRUE, MOVE END POINTER FORWARD
-    maxFrequency: {'a': 3, 'b': 2}
-
-    [A, A, B, A, B, B, A] k = 2
-           S     E (2 - 4 <= 2) TRUE, MOVE END POINTER FORWARD
-
-    [A, A, B, A, B, B, A] k = 2
-           S        E (2 - 5 <= 2) FALSE, MOVE START POINTER FORWARD
-
-    [A, A, B, A, B, B, A] k = 2
-              S     E (3 - 5 <= 2)
-
-    [A, A, B, A, B, B, A] k = 2
-              S        E
-    maxFrequency: {'a': 3, 'b': 3}
+           S           E (7 - 2 - 2 <= 2) FALSE, maxFrequency: {'a': 2, 'b': 2}
     */
