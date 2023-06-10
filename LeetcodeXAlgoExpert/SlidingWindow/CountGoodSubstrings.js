@@ -27,7 +27,7 @@ var countGoodSubstrings = function (s) {
 
   for (let right = 0; right < s.length; right++) {
     while (set.has(s[right])) {
-      //delete all left chars until duplicate has been removed
+      //delete ALL left chars until duplicate has been removed
       set.delete(s[left]);
       left++;
     }
@@ -35,7 +35,7 @@ var countGoodSubstrings = function (s) {
     set.add(s[right]);
 
     if (set.size === 3) {
-      //good substr has been found, delete left char to decrease size of set
+      //good substr has been found, delete left char to decrease size of set and check for other substr
       totalSubstr++;
       set.delete(s[left]);
       left++;
