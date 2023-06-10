@@ -10,6 +10,31 @@ Input: nums = [1,2,3,1,2,3], k = 2
 Output: false
 */
 
+//Time: O(n) | Space: O(1) -> side of map does not grow in proportion to input size, size is based on k
+var containsNearbyDuplicate = function (nums, k) {
+  let left = 0;
+  let right = 0;
+  let map = {};
+  while (right < nums.length) {
+    if (nums[right] in map) {
+      return true;
+    } else {
+      map[nums[right]] = true;
+    }
+
+    if (right - left === k) {
+      delete map[nums[left]];
+      left++;
+    }
+
+    right++;
+  }
+
+  return false;
+};
+
+//Hash Map Approach
+//Time: O(n) | Space: O(n) -> size of map grows for every non-repeating value in the input
 var containsNearbyDuplicate = function (nums, k) {
   const map = {};
   for (let i = 0; i < nums.length; i++) {
