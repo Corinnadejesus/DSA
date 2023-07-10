@@ -39,7 +39,7 @@ var twoSum = function (nums, target) {
     //get the value needed by subtracting target from current element of array
     const numNeeded = target - nums[i];
 
-    //if map key is not undefined, edge case for the first iteration
+    //if map key is not undefin1ed, edge case for the first iteration
     if (hashMap[numNeeded] !== undefined) {
       //extract the numNeeded as the key and its index as the value from the map
       return [map[numNeeded], i];
